@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>London & Iceland Family Guidebook</title>
+  <title>런던 & 아이슬란드 가족 여행 가이드북</title>
   <style>
     :root {
       --ink: #202124;
@@ -21,17 +21,17 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Pretendard, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background:
         radial-gradient(circle at top left, rgba(128, 183, 200, 0.25), transparent 34rem),
         radial-gradient(circle at 85% 12%, rgba(231, 183, 95, 0.18), transparent 24rem),
         var(--cream);
+      word-break: keep-all;
     }
 
     .topbar {
@@ -67,12 +67,7 @@
       box-shadow: 0 8px 20px rgba(44, 48, 53, .24);
     }
 
-    nav {
-      display: flex;
-      gap: .5rem;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
+    nav { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
 
     nav a {
       text-decoration: none;
@@ -111,8 +106,8 @@
     h1 {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(3.2rem, 9vw, 8rem);
-      line-height: .88;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: .98;
       letter-spacing: -.065em;
       max-width: 11ch;
     }
@@ -160,37 +155,12 @@
       text-shadow: 0 8px 28px rgba(0,0,0,.38);
     }
 
-    .stat-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: .75rem;
-      margin-top: .9rem;
-    }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-top: .9rem; }
+    .stat { padding: 1rem; border-radius: 1.1rem; background: #f7efe5; border: 1px solid var(--line); }
+    .stat strong { display: block; font-size: 1.4rem; line-height: 1; }
+    .stat span { display: block; margin-top: .35rem; color: var(--muted); font-size: .85rem; font-weight: 700; }
 
-    .stat {
-      padding: 1rem;
-      border-radius: 1.1rem;
-      background: #f7efe5;
-      border: 1px solid var(--line);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.4rem;
-      line-height: 1;
-    }
-
-    .stat span {
-      display: block;
-      margin-top: .35rem;
-      color: var(--muted);
-      font-size: .85rem;
-      font-weight: 700;
-    }
-
-    section {
-      padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 5vw, 5rem);
-    }
+    section { padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 5vw, 5rem); }
 
     .section-head {
       display: flex;
@@ -208,24 +178,9 @@
       letter-spacing: -.055em;
     }
 
-    .section-head p {
-      max-width: 34rem;
-      color: var(--muted);
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    .map-grid {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 1rem;
-      align-items: stretch;
-    }
-
-    .timeline {
-      display: grid;
-      gap: .8rem;
-    }
+    .section-head p { max-width: 34rem; color: var(--muted); line-height: 1.65; margin: 0; }
+    .map-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 1rem; align-items: stretch; }
+    .timeline { display: grid; gap: .8rem; }
 
     .day-card, .place-card, .stay-card {
       background: var(--paper);
@@ -235,13 +190,7 @@
       overflow: hidden;
     }
 
-    .day-card {
-      padding: 1rem;
-      display: grid;
-      grid-template-columns: 4.5rem 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
+    .day-card { padding: 1rem; display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; align-items: start; }
 
     .date-badge {
       display: grid;
@@ -271,27 +220,10 @@
       background: white;
     }
 
-    .map-wrap iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
+    .map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .place-card img, .stay-card img {
-      width: 100%;
-      height: 15rem;
-      object-fit: cover;
-      display: block;
-      filter: saturate(1.05) contrast(1.02);
-    }
-
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .place-card img, .stay-card img { width: 100%; height: 15rem; object-fit: cover; display: block; filter: saturate(1.05) contrast(1.02); }
     .card-body { padding: 1rem; }
 
     .tag {
@@ -310,17 +242,8 @@
     .tag.ice { background: var(--ice); color: #276473; }
     .tag.stay { background: #e6eadf; color: var(--moss); }
 
-    .place-card h3, .stay-card h3 {
-      margin: 0 0 .45rem;
-      font-size: 1.25rem;
-      letter-spacing: -.02em;
-    }
-
-    .place-card p, .stay-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-    }
+    .place-card h3, .stay-card h3 { margin: 0 0 .45rem; font-size: 1.25rem; letter-spacing: -.02em; }
+    .place-card p, .stay-card p { margin: 0; color: var(--muted); line-height: 1.55; }
 
     .mini-note {
       margin-top: .85rem;
@@ -330,11 +253,7 @@
       color: var(--ink) !important;
     }
 
-    .stays-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
+    .stays-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 
     .footer {
       margin: 2rem clamp(1rem, 5vw, 5rem) 3rem;
@@ -370,65 +289,65 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><span class="brand-mark">✈</span> London & Iceland</div>
+    <div class="brand"><span class="brand-mark">✈</span> 런던 & 아이슬란드</div>
     <nav>
-      <a href="#itinerary">Itinerary</a>
-      <a href="#places">Places</a>
-      <a href="#stays">Stays</a>
+      <a href="#itinerary">일정</a>
+      <a href="#places">방문지</a>
+      <a href="#stays">숙소</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
       <div>
-        <div class="eyebrow">June 3–13, 2026 · Family Guidebook</div>
-        <h1>Two cities, one wild little adventure.</h1>
-        <p>A vivid, easy-to-use travel guide for our London city days and Iceland road trip. This site will hold the live map, daily plans, must-see places, food stops, waterfalls, campsites, hotels, and all the little notes we do not want to forget.</p>
+        <div class="eyebrow">2026년 6월 3일–13일 · 가족 여행 가이드북</div>
+        <h1>도시에서 빙하까지, 우리 가족의 작은 대모험.</h1>
+        <p>런던의 클래식한 풍경과 아이슬란드의 거대한 자연을 한눈에 볼 수 있도록 만든 여행 가이드입니다. 이 사이트에는 실시간 지도, 날짜별 일정, 방문지 설명, 맛집, 폭포, 캠핑장, 숙소 정보, 그리고 여행 중 꼭 기억해야 할 작은 메모들을 담을 예정입니다.</p>
       </div>
-      <aside class="hero-card" aria-label="Trip summary card">
+      <aside class="hero-card" aria-label="여행 요약 카드">
         <div class="poster-img"></div>
         <div class="stat-row">
-          <div class="stat"><strong>3</strong><span>London nights</span></div>
-          <div class="stat"><strong>7</strong><span>Iceland nights</span></div>
-          <div class="stat"><strong>∞</strong><span>Waterfalls</span></div>
+          <div class="stat"><strong>3</strong><span>런던 숙박</span></div>
+          <div class="stat"><strong>7</strong><span>아이슬란드 숙박</span></div>
+          <div class="stat"><strong>∞</strong><span>폭포와 풍경</span></div>
         </div>
       </aside>
     </section>
 
     <section id="itinerary">
       <div class="section-head">
-        <h2>Itinerary + Live Map</h2>
-        <p>Use this page as the main trip dashboard. The cards can become day-by-day plans once the schedule is finalized, and the map below uses your Google My Maps embed.</p>
+        <h2>일정 + 실시간 지도</h2>
+        <p>이 페이지는 여행 전체를 한눈에 보는 메인 대시보드입니다. 일정이 더 확정되면 날짜별 카드에 세부 코스, 식사, 이동 시간, 예약 정보를 넣을 수 있습니다.</p>
       </div>
 
       <div class="map-grid">
         <div class="timeline">
           <article class="day-card">
-            <div class="date-badge">Jun<br>3</div>
+            <div class="date-badge">6/3</div>
             <div>
-              <h3>Arrive in London</h3>
-              <p>Land at Heathrow or Gatwick, check in at Hyatt Regency London Blackfriars, then ease into the trip with nearby food, a walk, and a low-pressure first night.</p>
+              <h3>런던 도착</h3>
+              <p>히드로 또는 개트윅 공항 도착 후 Hyatt Regency London Blackfriars 체크인. 첫날은 무리하지 않고 근처에서 식사하고 가볍게 산책하는 일정입니다.</p>
             </div>
           </article>
           <article class="day-card">
-            <div class="date-badge blue">Jun<br>4–5</div>
+            <div class="date-badge blue">6/4<br>6/5</div>
             <div>
-              <h3>Classic London Days</h3>
-              <p>Borough Market, Buckingham Palace, St. Paul’s Cathedral, Tower Bridge, Big Ben, London Eye, British Museum, Sky Garden, Dishoom, and more.</p>
+              <h3>런던 대표 명소 둘러보기</h3>
+              <p>버러 마켓, 버킹엄 궁전, 세인트 폴 대성당, 타워 브리지, 빅벤, 런던 아이, 영국 박물관, 스카이 가든, 디슘 등 런던의 대표 장소들을 방문합니다.</p>
             </div>
           </article>
           <article class="day-card">
-            <div class="date-badge green">Jun<br>6</div>
+            <div class="date-badge green">6/6</div>
             <div>
-              <h3>London to Iceland</h3>
-              <p>Travel day to Iceland. Pick up campervan or rental setup, settle in, and start the Iceland portion of the adventure.</p>
+              <h3>런던에서 아이슬란드로 이동</h3>
+              <p>런던 일정을 마치고 아이슬란드로 이동하는 날입니다. 도착 후 캠퍼밴 또는 렌터카를 픽업하고 본격적인 아이슬란드 여행을 시작합니다.</p>
             </div>
           </article>
           <article class="day-card">
-            <div class="date-badge gold">Jun<br>6–13</div>
+            <div class="date-badge gold">6/6<br>6/13</div>
             <div>
-              <h3>Iceland Road Trip</h3>
-              <p>Rainbow Street, Sky Lagoon, Blue Lagoon, Geysir, Gullfoss, Thingvellir, Diamond Beach, Jökulsárlón, Dettifoss, Reynisfjara, Skógafoss, and more.</p>
+              <h3>아이슬란드 로드트립</h3>
+              <p>레인보우 스트리트, 스카이 라군, 블루 라군, 게이시르, 굴포스, 싱벨리르 국립공원, 다이아몬드 비치, 요쿨살론, 데티포스, 레이니스피아라, 스코가포스 등을 방문합니다.</p>
             </div>
           </article>
         </div>
@@ -441,68 +360,68 @@
 
     <section id="places">
       <div class="section-head">
-        <h2>Places We’re Visiting</h2>
-        <p>Each card can include 1–2 photos, what the place is famous for, why it matters, and our personal reason for visiting.</p>
+        <h2>방문할 곳들</h2>
+        <p>각 카드에는 사진 1–2장, 이 장소가 유명한 이유, 그리고 우리가 이곳을 방문하는 이유를 짧고 보기 쉽게 정리할 수 있습니다.</p>
       </div>
 
       <div class="cards">
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=80" alt="London skyline placeholder" />
+          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=80" alt="런던 전경 사진" />
           <div class="card-body">
-            <span class="tag">London</span>
-            <h3>Borough Market</h3>
-            <p>One of London’s most beloved food markets, famous for artisan stalls, fresh produce, street food, and a busy local atmosphere.</p>
-            <p class="mini-note">Why we’re visiting: an easy first food stop with lots of options for everyone.</p>
+            <span class="tag">런던</span>
+            <h3>버러 마켓</h3>
+            <p>런던에서 가장 사랑받는 푸드 마켓 중 하나로, 다양한 길거리 음식, 신선한 식재료, 현지 분위기를 함께 느낄 수 있는 곳입니다.</p>
+            <p class="mini-note">방문 이유: 가족 모두가 각자 먹고 싶은 음식을 고르기 좋고, 런던 여행을 맛있게 시작하기 좋은 장소입니다.</p>
           </div>
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=900&q=80" alt="Tower Bridge placeholder" />
+          <img src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=900&q=80" alt="타워 브리지 사진" />
           <div class="card-body">
-            <span class="tag">London</span>
-            <h3>Tower Bridge</h3>
-            <p>A dramatic Victorian bridge and one of the most recognizable views in the city, perfect for classic London photos.</p>
-            <p class="mini-note">Why we’re visiting: iconic skyline moment and family photo stop.</p>
+            <span class="tag">런던</span>
+            <h3>타워 브리지</h3>
+            <p>빅토리아 시대에 지어진 웅장한 다리로, 런던을 대표하는 가장 상징적인 풍경 중 하나입니다.</p>
+            <p class="mini-note">방문 이유: 런던다운 사진을 남기기 좋은 대표 포토 스팟입니다.</p>
           </div>
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&fit=crop&w=900&q=80" alt="Big Ben placeholder" />
+          <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&fit=crop&w=900&q=80" alt="빅벤 사진" />
           <div class="card-body">
-            <span class="tag">London</span>
-            <h3>Big Ben + Westminster</h3>
-            <p>The heart of postcard London, known for Parliament, historic architecture, and the famous clock tower.</p>
-            <p class="mini-note">Why we’re visiting: a must-see landmark that feels like London immediately.</p>
+            <span class="tag">런던</span>
+            <h3>빅벤 + 웨스트민스터</h3>
+            <p>영국 의회와 시계탑이 있는 런던의 대표적인 중심지로, 엽서 속 런던을 실제로 보는 듯한 장소입니다.</p>
+            <p class="mini-note">방문 이유: 런던에 왔다는 느낌을 가장 확실하게 주는 필수 코스입니다.</p>
           </div>
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=900&q=80" alt="Iceland landscape placeholder" />
+          <img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=900&q=80" alt="아이슬란드 풍경 사진" />
           <div class="card-body">
-            <span class="tag ice">Iceland</span>
-            <h3>Geysir</h3>
-            <p>A geothermal area known for erupting hot springs, steaming ground, and the strange, alive feeling of Iceland’s landscape.</p>
-            <p class="mini-note">Why we’re visiting: one of the classic Golden Circle stops.</p>
+            <span class="tag ice">아이슬란드</span>
+            <h3>게이시르</h3>
+            <p>뜨거운 물기둥이 솟아오르는 지열 지대로, 땅이 살아 움직이는 듯한 아이슬란드의 독특한 자연을 볼 수 있는 곳입니다.</p>
+            <p class="mini-note">방문 이유: 골든 서클의 대표 코스이자 아이슬란드다운 지열 풍경을 가까이에서 볼 수 있습니다.</p>
           </div>
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="Iceland waterfall placeholder" />
+          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="아이슬란드 폭포 사진" />
           <div class="card-body">
-            <span class="tag ice">Iceland</span>
-            <h3>Gullfoss Falls</h3>
-            <p>A powerful two-tier waterfall where glacial water drops into a deep canyon, often misty, loud, and unforgettable.</p>
-            <p class="mini-note">Why we’re visiting: big waterfall energy and one of Iceland’s signature views.</p>
+            <span class="tag ice">아이슬란드</span>
+            <h3>굴포스</h3>
+            <p>빙하수가 깊은 협곡으로 떨어지는 거대한 2단 폭포로, 물안개와 소리만으로도 압도되는 장소입니다.</p>
+            <p class="mini-note">방문 이유: 아이슬란드의 힘 있는 자연을 가장 강하게 느낄 수 있는 대표 폭포입니다.</p>
           </div>
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Black sand beach placeholder" />
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="검은 모래 해변 사진" />
           <div class="card-body">
-            <span class="tag ice">Iceland</span>
-            <h3>Reynisfjara Beach</h3>
-            <p>A black sand beach famous for basalt columns, sea stacks, dramatic waves, and a moody volcanic coastline.</p>
-            <p class="mini-note">Why we’re visiting: cinematic scenery and a completely different kind of beach.</p>
+            <span class="tag ice">아이슬란드</span>
+            <h3>레이니스피아라 해변</h3>
+            <p>검은 모래, 현무암 기둥, 거친 파도, 바다 위 바위 기둥으로 유명한 아이슬란드의 대표적인 화산 해변입니다.</p>
+            <p class="mini-note">방문 이유: 우리가 흔히 아는 해변과 완전히 다른, 영화 같은 풍경을 보기 위해 방문합니다.</p>
           </div>
         </article>
       </div>
@@ -510,28 +429,28 @@
 
     <section id="stays">
       <div class="section-head">
-        <h2>Where We’re Staying</h2>
-        <p>This page can hold hotel photos, campsite notes, check-in details, parking, nearby food, and anything the family needs to know.</p>
+        <h2>우리가 머무는 곳</h2>
+        <p>숙소 사진, 체크인 정보, 주차, 주변 식당, 캠핑장 시설, 샤워 가능 여부 등 가족들이 필요로 할 정보를 정리하는 공간입니다.</p>
       </div>
 
       <div class="stays-grid">
         <article class="stay-card">
-          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80" alt="Hotel placeholder" />
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80" alt="호텔 사진" />
           <div class="card-body">
-            <span class="tag stay">London Stay</span>
+            <span class="tag stay">런던 숙소</span>
             <h3>Hyatt Regency London Blackfriars</h3>
-            <p>Our London home base from June 3 to June 6. Convenient for sightseeing, transit, food, and getting around central London.</p>
-            <p class="mini-note">Add later: address, confirmation number, check-in time, breakfast notes, and nearby stations.</p>
+            <p>6월 3일부터 6월 6일까지 머무는 런던 숙소입니다. 중심부 관광, 대중교통, 식당 접근성이 좋아 런던 일정을 시작하기 좋은 베이스캠프입니다.</p>
+            <p class="mini-note">추가 예정: 주소, 예약 번호, 체크인 시간, 조식 정보, 가까운 지하철역.</p>
           </div>
         </article>
 
         <article class="stay-card">
-          <img src="https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=1000&q=80" alt="Campervan placeholder" />
+          <img src="https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=1000&q=80" alt="캠퍼밴 사진" />
           <div class="card-body">
-            <span class="tag stay">Iceland Stay</span>
-            <h3>Campervan + Campsites</h3>
-            <p>Our Iceland setup from June 6 to June 13. This card can turn into a full campsite list with nightly locations and facilities.</p>
-            <p class="mini-note">Add later: rental company, pickup time, campsite names, showers, laundry, and backup stays.</p>
+            <span class="tag stay">아이슬란드 숙소</span>
+            <h3>캠퍼밴 + 캠핑장</h3>
+            <p>6월 6일부터 6월 13일까지의 아이슬란드 숙박 형태입니다. 캠핑장 리스트가 확정되면 날짜별 위치와 시설 정보를 추가할 수 있습니다.</p>
+            <p class="mini-note">추가 예정: 렌트 회사, 픽업 시간, 캠핑장 이름, 샤워/세탁 가능 여부, 예비 숙소.</p>
           </div>
         </article>
       </div>
@@ -539,7 +458,12 @@
   </main>
 
   <footer class="footer">
-    <strong>London & Iceland · June 2026</strong>
+    <strong>런던 & 아이슬란드 · 2026년 6월</strong>
+    <p>여행이 구체화될수록 함께 채워지는 우리 가족 가이드북.</p>
+  </footer>
+</body>
+</html>
+
     <p>Built as a living guidebook. Add details as the trip becomes real.</p>
   </footer>
 </body>
