@@ -179,8 +179,8 @@
     }
 
     .section-head p { max-width: 34rem; color: var(--muted); line-height: 1.65; margin: 0; }
-    .map-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 1rem; align-items: stretch; }
-    .timeline { display: grid; gap: .8rem; }
+    .map-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: stretch; }
+    .timeline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
 
     .day-card, .place-card, .stay-card {
       background: var(--paper);
@@ -212,7 +212,7 @@
     .day-card p { margin: 0; color: var(--muted); line-height: 1.5; }
 
     .map-wrap {
-      min-height: 36rem;
+      min-height: 70vh;
       border-radius: 1.6rem;
       overflow: hidden;
       border: 1px solid var(--line);
@@ -271,6 +271,7 @@
 
     @media (max-width: 950px) {
       .hero, .map-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
       .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .map-wrap { min-height: 28rem; }
     }
@@ -280,7 +281,7 @@
       nav { justify-content: flex-start; }
       .section-head { display: block; }
       .section-head p { margin-top: 1rem; }
-      .cards, .stays-grid, .stat-row { grid-template-columns: 1fr; }
+      .timeline, .cards, .stays-grid, .stat-row { grid-template-columns: 1fr; }
       .hero-card { transform: none; }
       .poster-img { min-height: 23rem; }
       .day-card { grid-template-columns: 3.8rem 1fr; }
@@ -400,6 +401,8 @@
     <p>키르큐펠스포스, 아르나르스타피, 이트리 퉁가, 스나이펠스네스 반도, 흐밤스비크 온천을 방문한 뒤 캐리어를 픽업합니다. 이후 공항이 있는 케플라비크로 이동해 호텔에서 숙박하며, 다음 날 이른 새벽 출국을 위해 푹 쉬는 일정입니다.</p>
   </div>
 </article>
+        </div>
+
         <div class="map-wrap">
           <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1LNLXpkGFz1LaQtOkBwMYtQdJb1voZjA&ehbc=2E312F" loading="lazy"></iframe>
         </div>
@@ -414,7 +417,7 @@
 
       <div class="cards">
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=80" alt="런던 전경" />
+          <img src="https://source.unsplash.com/900x600/?Heathrow,Airport,London" alt="런던 전경" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>히드로 공항</h3>
@@ -424,7 +427,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&fit=crop&w=900&q=80" alt="런던 중심가" />
+          <img src="https://source.unsplash.com/900x600/?Blackfriars,London,hotel" alt="런던 중심가" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>하얏트 리젠시 런던 블랙프라이어스</h3>
@@ -434,7 +437,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1543832923-44667a44c804?auto=format&fit=crop&w=900&q=80" alt="세인트폴 대성당" />
+          <img src="https://source.unsplash.com/900x600/?St%20Paul%27s%20Cathedral,London" alt="세인트폴 대성당" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>세인트폴 대성당</h3>
@@ -443,7 +446,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=900&q=80" alt="타워 브리지" />
+          <img src="https://source.unsplash.com/900x600/?Tower%20Bridge,London" alt="타워 브리지" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>타워 브리지</h3>
@@ -452,7 +455,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1531572753322-ad063cecc140?auto=format&fit=crop&w=900&q=80" alt="버러 마켓" />
+          <img src="https://source.unsplash.com/900x600/?Borough%20Market,London" alt="버러 마켓" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>버로우 마켓</h3>
@@ -461,7 +464,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1548274777-5f55d7d3b476?auto=format&fit=crop&w=900&q=80" alt="피카딜리 서커스" />
+          <img src="https://source.unsplash.com/900x600/?Piccadilly%20Circus,London" alt="피카딜리 서커스" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>피카딜리 서커스</h3>
@@ -470,7 +473,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1513026705753-bc3fffca8bf4?auto=format&fit=crop&w=900&q=80" alt="트라팔가 광장" />
+          <img src="https://source.unsplash.com/900x600/?Trafalgar%20Square,London" alt="트라팔가 광장" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>트라팔가 광장</h3>
@@ -479,7 +482,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?auto=format&fit=crop&w=900&q=80" alt="빅벤" />
+          <img src="https://source.unsplash.com/900x600/?Big%20Ben,Westminster,London" alt="빅벤" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>빅 벤</h3>
@@ -488,7 +491,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1520986606214-8b456906c813?auto=format&fit=crop&w=900&q=80" alt="세인트 제임스 파크" />
+          <img src="https://source.unsplash.com/900x600/?St%20James%27s%20Park,London" alt="세인트 제임스 파크" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>세인트 제임스 파크</h3>
@@ -497,7 +500,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?auto=format&fit=crop&w=900&q=80" alt="버킹엄 궁전" />
+          <img src="https://source.unsplash.com/900x600/?Buckingham%20Palace,London" alt="버킹엄 궁전" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>버킹엄 궁전</h3>
@@ -506,7 +509,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1526816229784-65d5d54ac8bc?auto=format&fit=crop&w=900&q=80" alt="런던 아이" />
+          <img src="https://source.unsplash.com/900x600/?London%20Eye,London" alt="런던 아이" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>런던 아이</h3>
@@ -515,7 +518,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1575223970966-76ae61ee7838?auto=format&fit=crop&w=900&q=80" alt="대영박물관" />
+          <img src="https://source.unsplash.com/900x600/?British%20Museum,London" alt="대영박물관" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>대영박물관</h3>
@@ -524,7 +527,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80" alt="스카이 가든" />
+          <img src="https://source.unsplash.com/900x600/?Sky%20Garden,London" alt="스카이 가든" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>스카이 가든</h3>
@@ -533,7 +536,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80" alt="레스토랑" />
+          <img src="https://source.unsplash.com/900x600/?Dishoom,London,restaurant" alt="레스토랑" />
           <div class="card-body">
             <span class="tag">런던</span>
             <h3>디슘 (Dishoom)</h3>
@@ -542,7 +545,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=900&q=80" alt="레이캬비크 거리" />
+          <img src="https://source.unsplash.com/900x600/?Rainbow%20Street,Reykjavik,Iceland" alt="레이캬비크 거리" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>레이캬비크 레인보우 스트리트</h3>
@@ -551,7 +554,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1491816177340-8b703b3884c2?auto=format&fit=crop&w=900&q=80" alt="할그림스키르캬" />
+          <img src="https://source.unsplash.com/900x600/?Hallgrimskirkja,Reykjavik,Iceland" alt="할그림스키르캬" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>할그림스키르캬 성당</h3>
@@ -560,7 +563,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="온천" />
+          <img src="https://source.unsplash.com/900x600/?Sky%20Lagoon,Iceland" alt="온천" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>스카이 라군</h3>
@@ -569,7 +572,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="아이슬란드 자연" />
+          <img src="https://source.unsplash.com/900x600/?Thingvellir,Iceland" alt="아이슬란드 자연" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>싱벨리르 국립공원</h3>
@@ -578,7 +581,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="폭포" />
+          <img src="https://source.unsplash.com/900x600/?Bruarfoss,Iceland,waterfall" alt="폭포" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>브뤼아르포스</h3>
@@ -587,7 +590,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=900&q=80" alt="게이시르" />
+          <img src="https://source.unsplash.com/900x600/?Geysir,Iceland" alt="게이시르" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>게이시르</h3>
@@ -596,7 +599,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="굴포스" />
+          <img src="https://source.unsplash.com/900x600/?Gullfoss,Iceland,waterfall" alt="굴포스" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>굴포스</h3>
@@ -605,7 +608,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="하이포스" />
+          <img src="https://source.unsplash.com/900x600/?Haifoss,Iceland,waterfall" alt="하이포스" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>하이포스</h3>
@@ -614,7 +617,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="셀랴란드스포스" />
+          <img src="https://source.unsplash.com/900x600/?Seljalandsfoss,Iceland" alt="셀랴란드스포스" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>셀랴란드스포스</h3>
@@ -623,7 +626,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="스코가포스" />
+          <img src="https://source.unsplash.com/900x600/?Skogafoss,Iceland" alt="스코가포스" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>스코가포스</h3>
@@ -632,7 +635,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="협곡" />
+          <img src="https://source.unsplash.com/900x600/?Fjadrargljufur,Iceland,canyon" alt="협곡" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>퍄드라르글류푸르 전망대</h3>
@@ -641,7 +644,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="빙하 지대" />
+          <img src="https://source.unsplash.com/900x600/?Skaftafell,Iceland,glacier" alt="빙하 지대" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>스카프타펠</h3>
@@ -650,7 +653,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1520769497952-ec0b13bc82a2?auto=format&fit=crop&w=900&q=80" alt="빙하 라군" />
+          <img src="https://source.unsplash.com/900x600/?Jokulsarlon,Glacier,Lagoon,Iceland" alt="빙하 라군" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>요쿨살론 빙하 라군</h3>
@@ -659,7 +662,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="다이아몬드 비치" />
+          <img src="https://source.unsplash.com/900x600/?Diamond%20Beach,Iceland" alt="다이아몬드 비치" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>다이아몬드 비치</h3>
@@ -668,7 +671,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=80" alt="레스토랑" />
+          <img src="https://source.unsplash.com/900x600/?Hofn,Iceland,restaurant" alt="레스토랑" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>파크후스 레스토랑</h3>
@@ -677,7 +680,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="폭포" />
+          <img src="https://source.unsplash.com/900x600/?Litlanesfoss,Iceland,waterfall" alt="폭포" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>리틀라네스포스</h3>
@@ -686,7 +689,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="에질스타디르" />
+          <img src="https://source.unsplash.com/900x600/?Egilsstadir,Iceland" alt="에질스타디르" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>에질스타디르</h3>
@@ -695,7 +698,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="아이슬란드 마을" />
+          <img src="https://source.unsplash.com/900x600/?Borgarfjordur%20Eystri,Iceland,puffin" alt="아이슬란드 마을" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>보르가르피외르뒤르 에이스트리</h3>
@@ -704,7 +707,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="스투들라길 협곡" />
+          <img src="https://source.unsplash.com/900x600/?Studlagil,Canyon,Iceland" alt="스투들라길 협곡" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>스투들라길 협곡</h3>
@@ -713,7 +716,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=900&q=80" alt="흐베리르" />
+          <img src="https://source.unsplash.com/900x600/?Hverir,Iceland,geothermal" alt="흐베리르" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>흐베리르 지열 지대</h3>
@@ -722,7 +725,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="고다포스" />
+          <img src="https://source.unsplash.com/900x600/?Godafoss,Iceland,waterfall" alt="고다포스" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>고다포스</h3>
@@ -731,7 +734,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="아쿠레이리" />
+          <img src="https://source.unsplash.com/900x600/?Akureyri,Iceland" alt="아쿠레이리" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>아쿠레이리</h3>
@@ -740,7 +743,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1476611338391-6f395a0ebc7b?auto=format&fit=crop&w=900&q=80" alt="키르큐펠스포스" />
+          <img src="https://source.unsplash.com/900x600/?Kirkjufellsfoss,Iceland" alt="키르큐펠스포스" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>키르큐펠스포스</h3>
@@ -749,7 +752,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="아르나르스타피" />
+          <img src="https://source.unsplash.com/900x600/?Arnarstapi,Iceland" alt="아르나르스타피" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>아르나르스타피</h3>
@@ -758,7 +761,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=900&q=80" alt="물개" />
+          <img src="https://source.unsplash.com/900x600/?Ytri%20Tunga,Iceland,seals" alt="물개" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>이트리 퉁가</h3>
@@ -767,7 +770,7 @@
         </article>
 
         <article class="place-card">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="온천" />
+          <img src="https://source.unsplash.com/900x600/?Hvammsvik,Iceland,hot%20springs" alt="온천" />
           <div class="card-body">
             <span class="tag ice">아이슬란드</span>
             <h3>흐밤스비크 온천</h3>
@@ -810,4 +813,3 @@
   </footer>
 </body>
 </html>
-
