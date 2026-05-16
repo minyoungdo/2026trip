@@ -286,6 +286,47 @@
       .poster-img { min-height: 23rem; }
       .day-card { grid-template-columns: 3.8rem 1fr; }
     }
+
+    .flight-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .65rem;
+  margin: 1rem 0;
+}
+
+.flight-info div {
+  padding: .85rem;
+  border-radius: 1rem;
+  background: #f7efe5;
+  border: 1px solid var(--line);
+}
+
+.flight-info span {
+  display: block;
+  font-size: .75rem;
+  font-weight: 900;
+  color: var(--muted);
+  margin-bottom: .35rem;
+}
+
+.flight-info strong {
+  display: block;
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.flight-info small {
+  display: block;
+  margin-top: .35rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+@media (max-width: 680px) {
+  .flight-info {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 <body>
@@ -315,6 +356,188 @@
       </aside>
     </section>
 
+<section id="flights">
+  <div class="section-head">
+    <h2>항공편 정보</h2>
+    <p>이번 여행의 국제선 및 유럽 구간 항공편 정보입니다. 실시간 항공편 경로도 함께 확인할 수 있어요 ✈️</p>
+  </div>
+
+  <div class="cards">
+
+    <!-- KE907 -->
+    <article class="place-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Korean_Air_Boeing_777-300ER_HL7784.jpg" alt="대한항공" />
+
+      <div class="card-body">
+        <span class="tag">대한항공</span>
+        <h3>KE907 · 인천 → 런던</h3>
+
+        <div class="flight-info">
+          <div>
+            <span>출발</span>
+            <strong>10:55</strong>
+            <small>인천 ICN · T2</small>
+          </div>
+
+          <div>
+            <span>도착</span>
+            <strong>17:20</strong>
+            <small>런던 히드로 LHR · T4</small>
+          </div>
+
+          <div>
+            <span>비행시간</span>
+            <strong>14시간 25분</strong>
+            <small>B777-300ER</small>
+          </div>
+        </div>
+
+        <div class="flight-map">
+          <iframe
+            src="https://flightaware.com/live/flight/KAL907"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <a class="flight-button" href="https://flightaware.com/live/flight/KAL907" target="_blank">
+          실시간 항공편 경로 보기
+        </a>
+      </div>
+    </article>
+
+
+    <!-- KE908 -->
+    <article class="place-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Korean_Air_Boeing_777-300ER_HL7784.jpg" alt="대한항공" />
+
+      <div class="card-body">
+        <span class="tag">대한항공</span>
+        <h3>KE908 · 런던 → 인천</h3>
+
+        <div class="flight-info">
+          <div>
+            <span>출발</span>
+            <strong>19:35</strong>
+            <small>런던 히드로 LHR · T4</small>
+          </div>
+
+          <div>
+            <span>도착</span>
+            <strong>16:15 +1</strong>
+            <small>인천 ICN · T2</small>
+          </div>
+
+          <div>
+            <span>비행시간</span>
+            <strong>12시간 40분</strong>
+            <small>B777-300ER</small>
+          </div>
+        </div>
+
+        <div class="flight-map">
+          <iframe
+            src="https://flightaware.com/live/flight/KAL908"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <a class="flight-button" href="https://flightaware.com/live/flight/KAL908" target="_blank">
+          실시간 항공편 경로 보기
+        </a>
+      </div>
+    </article>
+
+
+    <!-- FI473 -->
+    <article class="place-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Icelandair_Boeing_737_MAX_8_TF-ICE.jpg" alt="아이슬란드에어" />
+
+      <div class="card-body">
+        <span class="tag ice">Icelandair</span>
+        <h3>FI473 · 런던 → 레이캬비크</h3>
+
+        <div class="flight-info">
+          <div>
+            <span>출발</span>
+            <strong>15:40</strong>
+            <small>런던 개트윅 LGW</small>
+          </div>
+
+          <div>
+            <span>도착</span>
+            <strong>17:55</strong>
+            <small>케플라비크 KEF</small>
+          </div>
+
+          <div>
+            <span>비행시간</span>
+            <strong>3시간 15분</strong>
+            <small>B737 MAX 8</small>
+          </div>
+        </div>
+
+        <div class="flight-map">
+          <iframe
+            src="https://flightaware.com/live/flight/ICE473"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <a class="flight-button" href="https://flightaware.com/live/flight/ICE473" target="_blank">
+          실시간 항공편 경로 보기
+        </a>
+      </div>
+    </article>
+
+
+    <!-- FI450 -->
+    <article class="place-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Icelandair_Boeing_737_MAX_8_TF-ICE.jpg" alt="아이슬란드에어" />
+
+      <div class="card-body">
+        <span class="tag ice">Icelandair</span>
+        <h3>FI450 · 레이캬비크 → 런던</h3>
+
+        <div class="flight-info">
+          <div>
+            <span>출발</span>
+            <strong>07:40</strong>
+            <small>케플라비크 KEF</small>
+          </div>
+
+          <div>
+            <span>도착</span>
+            <strong>11:55</strong>
+            <small>런던 히드로 LHR</small>
+          </div>
+
+          <div>
+            <span>비행시간</span>
+            <strong>3시간 15분</strong>
+            <small>B737 MAX 8</small>
+          </div>
+        </div>
+
+        <div class="flight-map">
+          <iframe
+            src="https://flightaware.com/live/flight/ICE450"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <a class="flight-button" href="https://flightaware.com/live/flight/ICE450" target="_blank">
+          실시간 항공편 경로 보기
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
+    
     <section id="itinerary">
       <div class="section-head">
         <h2>일정 한눈에 보기</h2>
@@ -324,7 +547,7 @@
       <div class="map-grid">
         <div class="timeline">
           <article class="day-card">
-            <div class="date-badge">6/3 (수)</div>
+            <div class="date-badge">6/3<br>(수)</div>
             <div>
               <h3>런던 도착 + 가족 상봉</h3>
               <p>엄마 아빠는 한국에서, 우리는 미국에서 출발해 런던 히스로 공항에서 만나는 날입니다. 호텔 체크인 후 짐을 푼 뒤 근처를 가볍게 산책하고, 마지막 일정으로 런던 펍에 들러 첫날을 마무리합니다.</p>
@@ -332,7 +555,7 @@
           </article>
 
           <article class="day-card">
-            <div class="date-badge blue">6/4 (목)</div>
+            <div class="date-badge blue">6/4<br>(목)</div>
             <div>
               <h3>런던 시내 여행하기</h3>
               <p>호텔에서 도보로 20분 정도 걸리는 세인트폴 대성당에 방문하며 하루를 시작해요. 템즈강을 따라 타워 브리지까지 이동하고 구경하다가 버로우 마켓으로 이동해 점심을 먹어요. 영국 귀족 문화의 정수, 애프터눈 티를 즐기러 영국 명품 차와 다기 브랜드, 포트넘 앤 메이슨에 방문합니다. 저녁에는 피카딜리 서커스와 소호 거리를 돌아다니며 런던의 밤 분위기를 즐겨봐요.</p>
@@ -340,7 +563,7 @@
           </article>
 
           <article class="day-card">
-            <div class="date-badge green">6/5 (금)</div>
+            <div class="date-badge green">6/5<br>(금)</div>
             <div>
               <h3>프라이빗 런던 투어</h3>
               <p>오전 10시부터 시작되는 프라이빗 투어 일정입니다. 트라팔가 광장, 빅 벤, 세인트 제임스 파크, 버킹엄 궁전 근위병 교대식을 보고, 크루즈를 타고 타워 브리지 방향으로 이동한 뒤 대영박물관에 방문해 유명한 유물들과 작품들을 가이드의 설명과 함께 감상해요.</p>
@@ -348,7 +571,7 @@
           </article>
 
           <article class="day-card">
-            <div class="date-badge gold">6/6 (토)</div>
+            <div class="date-badge gold">6/6<br>(토)</div>
             <div>
               <h3>스카이 가든 브런치 + 아이슬란드 이동</h3>
               <p>아침에는 스카이 가든의 다윈 브라세리에서 정통 영국식 아침 식사를 즐긴 뒤 호텔로 돌아와 짐을 정리합니다. 이후 개트윅 공항으로 이동해 오후 3시 40분 비행기로 아이슬란드의 수도, 레이캬비크로 출발합니다. 도착 후에는 숙소인 스완 하우스로 이동해 쉬며 다음 날을 준비합니다.</p>
@@ -356,14 +579,14 @@
           </article>
 
           <article class="day-card">
-            <div class="date-badge blue">6/7 (일)</div>
+            <div class="date-badge blue">6/7<br>(일)</div>
             <div>
               <h3>레이캬비크 시내 + 스카이 라군</h3>
               <p>오전에는 레인보우 스트리트와 할그림스키르캬 교회를 둘러보며 레이캬비크 시내를 구경합니다. 오후에는 스카이 라군에서 온천을 즐기고, 이후 링로드 여행을 위해 짐을 정리하고 캐리어를 맡길 예정입니다.</p>
             </div>
           </article>
 <article class="day-card">
-  <div class="date-badge green">6/8 (월)</div>
+  <div class="date-badge green">6/8<br>(월)</div>
   <div>
     <h3>링로드 여행 1일차</h3>
     <p>아침 일찍 캠핑카를 픽업하고 본격적인 링로드 여행을 시작합니다. 싱벨리르 국립공원, 브뤼아르포스, 게이시르, 굴포스 자연보호구역, 하이포스, 셀랴란드스포스, 스코가포스를 방문한 뒤 타크길 캠핑장에서 숙박합니다.</p>
@@ -371,7 +594,7 @@
 </article>
 
 <article class="day-card">
-  <div class="date-badge gold">6/9 (화)</div>
+  <div class="date-badge gold">6/9<br>(화)</div>
   <div>
     <h3>링로드 여행 2일차</h3>
     <p>타크길 캠핑장에서 출발해 요쿨살론 빙하 라군 보트 투어, 파크후스 레스토랑을 거쳐 포사르달루르 캠핑장에서 숙박합니다.</p>
@@ -379,7 +602,7 @@
 </article>
 
 <article class="day-card">
-  <div class="date-badge blue">6/10 (수)</div>
+  <div class="date-badge blue">6/10<br>(수)</div>
   <div>
     <h3>링로드 여행 3일차</h3>
     <p>에질스타디르, 보르가르피외르뒤르 에이스트리, 스투들라길 협곡, 흐베리르 지열 지대를 방문한 뒤 비야르그 캠핑장에서 숙박합니다.</p>
@@ -387,7 +610,7 @@
 </article>
 
 <article class="day-card">
-  <div class="date-badge green">6/11 (목)</div>
+  <div class="date-badge green">6/11<br>(목)</div>
   <div>
     <h3>링로드 여행 4일차</h3>
     <p>비야르그 캠핑장에서 출발해 고다포스 폭포와 근처 도시 아쿠레이리를 방문합니다. 이후 다음 이동 일정에 맞춰 공항으로 이동합니다.</p>
@@ -395,7 +618,7 @@
 </article>
 
 <article class="day-card">
-  <div class="date-badge gold">6/12 (금)</div>
+  <div class="date-badge gold">6/12<br>(금)</div>
   <div>
     <h3>링로드 여행 마무리</h3>
     <p>키르큐펠스포스, 아르나르스타피, 이트리 퉁가, 스나이펠스네스 반도, 흐밤스비크 온천을 방문한 뒤 캐리어를 픽업합니다. 이후 공항이 있는 케플라비크로 이동해 호텔에서 숙박하며, 다음 날 이른 새벽 출국을 위해 푹 쉬는 일정입니다.</p>
@@ -403,7 +626,7 @@
 </article>
 
   <article class="day-card">
-  <div class="date-badge">6/13 (토)</div>
+  <div class="date-badge">6/13<br>(토)</div>
   <div>
     <h3>다시 런던에서 각자의 집으로!</h3>
     <p>아침 일찍 런던 히드로 공항에 도착해 오후에 출발하는 일정이에요. 저희는 다음 날 아침에 출발이라 공항 근처에 호텔을 하나 잡았으니까, 여기서 쉬다가 다시 공항에서 체크인하고 비행기 타면 됩니다. 토요일에 출발하지만 한국 시간으로는 일요일 오후에 도착하는 점 기억하세요!</p>
