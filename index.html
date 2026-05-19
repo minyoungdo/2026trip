@@ -451,6 +451,41 @@
     transform: translateY(120vh) rotate(360deg);
   }
 }
+
+
+    .gallery-hero{
+  position: relative;
+  width: 100%;
+  height: 78vh;
+
+  overflow: hidden;
+  border-radius: 2rem;
+}
+
+.gallery-hero img{
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  transition: opacity 1.4s ease;
+}
+
+.gallery-hero img.active{
+  opacity: 1;
+}
+
+.lounge-gallery{
+  margin-top: 1rem;
+}
+
+
+    
   </style>
 
 
@@ -629,6 +664,66 @@
       </div>
     </article>
 
+<section id="lounge">
+  <div class="section-head">
+    <h2>공항 라운지 정보</h2>
+    <p>출국 당일에 이용할 수 있는 인천공항 대한항공 프레스티지 라운지 정보예요 ✈️</p>
+  </div>
+
+  <div class="place-card">
+
+    <div class="card-body">
+      <span class="tag">인천공항 T2</span>
+
+      <h3>대한항공 프레스티지 동편 좌측 라운지</h3>
+
+      <p>
+        인천공항 제2여객터미널 253번 탑승구 맞은편에 있는 대한항공 프레스티지 동편 좌측 라운지! 새로 오픈한 라운지인데 온갖 종류의 라면도 먹을 수 있고 오락실도 이용할 수 있어요 🎮 라운지 입장할 때 코인을 주는데, 그걸로 마리오 카트나 인형 뽑기 같은 아케이드 게임들을 할 수 있어요 ㅋㅋ 인생네컷 사진도 찍을 수 있으니까 꼭 찍어서 보내주세요 🤍 샤워실도 이용 가능한데, 직원에게 문의하거나 키오스크에 이름과 핸드폰 번호를 등록해서 대기 걸어두면 순서가 되면 들어갈 수 있답니다~
+      </p>
+    </div>
+
+    <div class="gallery-hero lounge-gallery">
+      <img 
+        src="https://kr.img.news.koreanair.com/wp-content/uploads/2026/01/%EC%82%AC%EC%A7%845-PR%EB%8F%99%ED%8E%B8-%EC%A2%8C%EC%B8%A1%EB%9D%BC%EC%9A%B4%EC%A7%80-1-scaled.jpg"
+        class="active"
+        alt="대한항공 라운지"
+      >
+
+      <img 
+        src="https://kr.img.news.koreanair.com/wp-content/uploads/2026/01/%EC%82%AC%EC%A7%841-PR%EB%8F%99%ED%8E%B8-%EC%A2%8C%EC%B8%A1%EB%9D%BC%EC%9A%B4%EC%A7%80-1-1024x620.jpg"
+        alt="대한항공 라운지 내부"
+      >
+
+      <img 
+        src="https://dimg.donga.com/wps/NEWS/IMAGE/2026/04/16/133754165.1.jpg"
+        alt="대한항공 라운지 오락실"
+      >
+
+      <img 
+        src="https://kr.img.news.koreanair.com/wp-content/uploads/2026/04/%EC%82%AC%EC%A7%847-1-1024x768.png"
+        alt="대한항공 라운지 지도"
+      >
+    </div>
+
+  </div>
+</section>
+
+<script>
+const loungeSlides = document.querySelectorAll('.lounge-gallery img');
+
+let loungeCurrent = 0;
+
+setInterval(() => {
+
+  loungeSlides[loungeCurrent].classList.remove('active');
+
+  loungeCurrent = (loungeCurrent + 1) % loungeSlides.length;
+
+  loungeSlides[loungeCurrent].classList.add('active');
+
+}, 3500);
+</script>
+    
   </div>
 </section>
     
