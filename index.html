@@ -489,7 +489,75 @@
   opacity: 1;
 }
 
+.itinerary-meta {
+  display: grid;
+  gap: .75rem;
+  margin-top: 1rem;
+}
 
+.stay-note {
+  padding: .8rem .9rem;
+  border-radius: 1rem;
+  background: #f7efe5;
+  border: 1px solid var(--line);
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.stay-note strong {
+  color: var(--ink);
+}
+
+.meal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .6rem;
+}
+
+.meal-card {
+  padding: .75rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, .72);
+  border: 1px solid var(--line);
+}
+
+.meal-card span {
+  display: block;
+  font-size: .72rem;
+  font-weight: 900;
+  color: var(--clay);
+  margin-bottom: .35rem;
+}
+
+.meal-card strong {
+  display: block;
+  font-size: .88rem;
+  margin-bottom: .3rem;
+}
+
+.meal-card small {
+  display: block;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.meal-button {
+  display: inline-flex;
+  margin-top: .55rem;
+  padding: .48rem .72rem;
+  border-radius: 999px;
+  background: var(--charcoal);
+  color: white;
+  text-decoration: none;
+  font-size: .75rem;
+  font-weight: 800;
+}
+
+@media (max-width: 680px) {
+  .meal-grid {
+    grid-template-columns: 1fr;
+  }
+}
     
   </style>
 
@@ -630,107 +698,379 @@ setInterval(() => {
   loungeSlides[loungeCurrent].classList.add('active');
 }, 3500);
 </script>
-    
-    <section id="itinerary">
-      <div class="section-head">
-        <h2>일정 한눈에 보기</h2>
-        <p>날짜별로 방문할 주요 명소와 숙소 등을 보기 쉽게 정리해두었어요.</p>
-      </div>
+<section id="itinerary">
+  <div class="section-head">
+    <h2>일정 한눈에 보기</h2>
+    <p>날짜별로 방문할 주요 명소와 숙소 등을 보기 쉽게 정리해두었어요.</p>
+  </div>
 
-      <div class="map-grid">
-        <div class="timeline">
-          <article class="day-card">
-            <div class="date-badge">6/3<br>(수)</div>
-            <div>
-              <h3>런던 도착 + 가족 상봉</h3>
-              <p>엄마 아빠는 한국에서, 우리는 미국에서 출발해 런던 히스로 공항에서 만나는 날입니다. 호텔 체크인 후 짐을 푼 뒤 근처를 가볍게 산책하고, 마지막 일정으로 런던 펍에 들러 첫날을 마무리합니다.</p>
+  <div class="map-grid">
+    <div class="timeline">
+
+      <article class="day-card">
+        <div class="date-badge">6/3<br>(수)</div>
+        <div>
+          <h3>런던 도착 + 가족 상봉</h3>
+          <p>엄마 아빠는 한국에서, 우리는 미국에서 출발해 런던 히스로 공항에서 만나는 날입니다. 호텔 체크인 후 짐을 푼 뒤 근처를 가볍게 산책하고, 마지막 일정으로 런던 펍에 들러 첫날을 마무리합니다.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 하얏트 리젠시 런던 블랙프라이어스 · 체크인</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>기내식 / 이동 중 식사</strong>
+                <small>각자 비행 일정에 맞춰 간단히 먹기</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>이동 중 간단 식사</strong>
+                <small>도착 시간에 따라 공항 또는 호텔 근처에서 가볍게</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>런던 펍</strong>
+                <small>첫날은 무리하지 않고 근처 펍에서 가볍게 저녁 먹기</small>
+                <a class="meal-button" href="https://maps.app.goo.gl/92oecmyfcBfgFGUz8" target="_blank">지도 보기</a>
+              </div>
             </div>
-          </article>
-
-          <article class="day-card">
-            <div class="date-badge blue">6/4<br>(목)</div>
-            <div>
-              <h3>런던 시내 여행하기</h3>
-              <p>호텔에서 도보로 20분 정도 걸리는 세인트폴 대성당에 방문하며 하루를 시작해요. 템즈강을 따라 타워 브리지까지 이동하고 구경하다가 버로우 마켓으로 이동해 점심을 먹어요. 영국 귀족 문화의 정수, 애프터눈 티를 즐기러 영국 명품 차와 다기 브랜드, 포트넘 앤 메이슨에 방문합니다. 저녁에는 피카딜리 서커스와 소호 거리를 돌아다니며 런던의 밤 분위기를 즐겨봐요.</p>
-            </div>
-          </article>
-
-          <article class="day-card">
-            <div class="date-badge green">6/5<br>(금)</div>
-            <div>
-              <h3>프라이빗 런던 투어</h3>
-              <p>오전 10시부터 시작되는 프라이빗 투어 일정입니다. 트라팔가 광장, 빅 벤, 세인트 제임스 파크, 버킹엄 궁전 근위병 교대식을 보고, 크루즈를 타고 타워 브리지 방향으로 이동한 뒤 대영박물관에 방문해 유명한 유물들과 작품들을 가이드의 설명과 함께 감상해요.</p>
-            </div>
-          </article>
-
-          <article class="day-card">
-            <div class="date-badge gold">6/6<br>(토)</div>
-            <div>
-              <h3>스카이 가든 브런치 + 아이슬란드 이동</h3>
-              <p>아침에는 스카이 가든의 다윈 브라세리에서 정통 영국식 아침 식사를 즐긴 뒤 호텔로 돌아와 짐을 정리합니다. 이후 개트윅 공항으로 이동해 오후 3시 40분 비행기로 아이슬란드의 수도, 레이캬비크로 출발합니다. 도착 후에는 숙소인 스완 하우스로 이동해 쉬며 다음 날을 준비합니다.</p>
-            </div>
-          </article>
-
-          <article class="day-card">
-            <div class="date-badge blue">6/7<br>(일)</div>
-            <div>
-              <h3>레이캬비크 시내 + 스카이 라군</h3>
-              <p>오전에는 레인보우 스트리트와 할그림스키르캬 교회를 둘러보며 레이캬비크 시내를 구경합니다. 오후에는 스카이 라군에서 온천을 즐기고, 이후 링로드 여행을 위해 짐을 정리하고 캐리어를 맡길 예정입니다.</p>
-            </div>
-          </article>
-<article class="day-card">
-  <div class="date-badge green">6/8<br>(월)</div>
-  <div>
-    <h3>링로드 여행 1일차</h3>
-    <p>아침 일찍 캠핑카를 픽업하고 본격적인 링로드 여행을 시작합니다. 싱벨리르 국립공원, 브뤼아르포스, 게이시르, 굴포스 자연보호구역, 하이포스, 셀랴란드스포스, 스코가포스를 방문한 뒤 타크길 캠핑장에서 숙박합니다.</p>
-  </div>
-</article>
-
-<article class="day-card">
-  <div class="date-badge gold">6/9<br>(화)</div>
-  <div>
-    <h3>링로드 여행 2일차</h3>
-    <p>타크길 캠핑장에서 출발해 요쿨살론 빙하 라군 보트 투어, 파크후스 레스토랑을 거쳐 포사르달루르 캠핑장에서 숙박합니다.</p>
-  </div>
-</article>
-
-<article class="day-card">
-  <div class="date-badge blue">6/10<br>(수)</div>
-  <div>
-    <h3>링로드 여행 3일차</h3>
-    <p>에질스타디르, 보르가르피외르뒤르 에이스트리, 스투들라길 협곡, 흐베리르 지열 지대를 방문한 뒤 비야르그 캠핑장에서 숙박합니다.</p>
-  </div>
-</article>
-
-<article class="day-card">
-  <div class="date-badge green">6/11<br>(목)</div>
-  <div>
-    <h3>링로드 여행 4일차</h3>
-    <p>비야르그 캠핑장에서 출발해 고다포스 폭포와 근처 도시 아쿠레이리를 방문합니다. 이후 다음 이동 일정에 맞춰 공항으로 이동합니다.</p>
-  </div>
-</article>
-
-<article class="day-card">
-  <div class="date-badge gold">6/12<br>(금)</div>
-  <div>
-    <h3>링로드 여행 마무리</h3>
-    <p>키르큐펠스포스, 아르나르스타피, 이트리 퉁가, 스나이펠스네스 반도, 흐밤스비크 온천을 방문한 뒤 캐리어를 픽업합니다. 이후 공항이 있는 케플라비크로 이동해 호텔에서 숙박하며, 다음 날 이른 새벽 출국을 위해 푹 쉬는 일정입니다.</p>
-  </div>
-</article>
-
-  <article class="day-card">
-  <div class="date-badge">6/13<br>(토)</div>
-  <div>
-    <h3>다시 런던에서 각자의 집으로!</h3>
-    <p>아침 일찍 런던 히드로 공항에 도착해 오후에 출발하는 일정이에요. 저희는 다음 날 아침에 출발이라 공항 근처에 호텔을 하나 잡았으니까, 여기서 쉬다가 다시 공항에서 체크인하고 비행기 타면 됩니다. 토요일에 출발하지만 한국 시간으로는 일요일 오후에 도착하는 점 기억하세요!</p>
-  </div>
-</article>
+          </div>
         </div>
+      </article>
 
-        <div class="map-wrap">
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1efYWe5qINTmWxUcBwVr3j924gCmQxmk&ehbc=2E312F" width="640" height="480"></iframe>        </div>
-      </div>
-    </section>
+      <article class="day-card">
+        <div class="date-badge blue">6/4<br>(목)</div>
+        <div>
+          <h3>런던 시내 여행하기</h3>
+          <p>호텔에서 도보로 20분 정도 걸리는 세인트폴 대성당에 방문하며 하루를 시작해요. 템즈강을 따라 타워 브리지까지 이동하고 구경하다가 버로우 마켓으로 이동해 점심을 먹어요. 영국 귀족 문화의 정수, 애프터눈 티를 즐기러 영국 명품 차와 다기 브랜드, 포트넘 앤 메이슨에 방문합니다. 저녁에는 피카딜리 서커스와 소호 거리를 돌아다니며 런던의 밤 분위기를 즐겨봐요.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 하얏트 리젠시 런던 블랙프라이어스</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>호텔 조식</strong>
+                <small>일정 시작 전 호텔에서 편하게 아침 먹기</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>버로우 마켓</strong>
+                <small>런던 대표 푸드 마켓에서 여러 길거리 음식과 디저트 맛보기</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>Dishoom Covent Garden · 17:00 예약</strong>
+                <small>봄베이 스타일 인도 음식점. 추천 메뉴: House Black Daal, Chicken Ruby, Gunpowder Potatoes</small>
+                <a class="meal-button" href="https://www.dishoom.com/covent-garden/" target="_blank">더 보기</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card">
+        <div class="date-badge green">6/5<br>(금)</div>
+        <div>
+          <h3>프라이빗 런던 투어</h3>
+          <p>오전 10시부터 시작되는 프라이빗 투어 일정입니다. 트라팔가 광장, 빅 벤, 세인트 제임스 파크, 버킹엄 궁전 근위병 교대식을 보고, 크루즈를 타고 타워 브리지 방향으로 이동한 뒤 대영박물관에 방문해 유명한 유물들과 작품들을 가이드의 설명과 함께 감상해요.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 하얏트 리젠시 런던 블랙프라이어스</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>호텔 조식 또는 가져온 한식</strong>
+                <small>투어가 긴 날이라 속 편한 메뉴로 가볍게 시작하기</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>투어 중 결정</strong>
+                <small>가이드 동선에 맞춰 근처에서 먹기</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>Co & Ko · 18:00 예약</strong>
+                <small>소호 근처 한식당. 추천 메뉴: 비빔밥, 불고기, 김치찌개, 고기 메뉴</small>
+                <a class="meal-button" href="https://maps.app.goo.gl/bNVAci8Qvdj9vdZy9" target="_blank">지도 보기</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card">
+        <div class="date-badge gold">6/6<br>(토)</div>
+        <div>
+          <h3>스카이 가든 브런치 + 아이슬란드 이동</h3>
+          <p>아침에는 스카이 가든의 다윈 브라세리에서 정통 영국식 아침 식사를 즐긴 뒤 호텔로 돌아와 짐을 정리합니다. 이후 개트윅 공항으로 이동해 오후 3시 40분 비행기로 아이슬란드의 수도, 레이캬비크로 출발합니다. 도착 후에는 숙소인 스완 하우스로 이동해 쉬며 다음 날을 준비합니다.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 하얏트 체크아웃 → 스완 하우스 레이캬비크 체크인</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>Darwin Brasserie · 08:30 예약</strong>
+                <small>스카이 가든 안 레스토랑. 추천 메뉴: 에그 베네딕트, 에그 로얄, 잉글리시 브렉퍼스트 스타일 메뉴</small>
+                <a class="meal-button" href="https://skygarden.london/restaurants/darwin-brasserie/" target="_blank">더 보기</a>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>공항 이동 중 간단 식사</strong>
+                <small>개트윅 공항 또는 이동 중 가볍게 해결</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>레이캬비크 도착 후 간단 식사</strong>
+                <small>숙소 도착 후 컨디션 보고 근처에서 가볍게 먹기</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card">
+        <div class="date-badge blue">6/7<br>(일)</div>
+        <div>
+          <h3>레이캬비크 시내 + 스카이 라군</h3>
+          <p>오전에는 레인보우 스트리트와 할그림스키르캬 교회를 둘러보며 레이캬비크 시내를 구경합니다. 오후에는 스카이 라군에서 온천을 즐기고, 이후 링로드 여행을 위해 짐을 정리하고 캐리어를 맡길 예정입니다.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 스완 하우스 레이캬비크</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>숙소 또는 근처 카페</strong>
+                <small>레이캬비크 시내 산책 전 가볍게 먹기</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>레이캬비크 시내 식사</strong>
+                <small>레인보우 스트리트 주변에서 현장 결정</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>장보기 + 간단 식사</strong>
+                <small>링로드 출발 전 캠핑카 식재료 준비하기</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card">
+        <div class="date-badge green">6/8<br>(월)</div>
+        <div>
+          <h3>링로드 여행 1일차</h3>
+          <p>아침 일찍 캠핑카를 픽업하고 본격적인 링로드 여행을 시작합니다. 싱벨리르 국립공원, 브뤼아르포스, 게이시르, 굴포스 자연보호구역, 하이포스, 셀랴란드스포스, 스코가포스를 방문한 뒤 타크길 캠핑장에서 숙박합니다.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 캠핑카 · 타크길 캠핑장</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>숙소 또는 캠핑카 픽업 전 간단 식사</strong>
+                <small>출발 준비하면서 간단하게 먹기</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>이동 중 간단 식사</strong>
+                <small>골든 서클 이동 중 샌드위치/간식/캠핑카 식사</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>캠핑장 식사</strong>
+                <small>타크길 캠핑장에서 캠핑카로 저녁 준비</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card">
+        <div class="date-badge gold">6/9<br>(화)</div>
+        <div>
+          <h3>링로드 여행 2일차</h3>
+          <p>타크길 캠핑장에서 출발해 요쿨살론 빙하 라군 보트 투어, 파크후스 레스토랑을 거쳐 포사르달루르 캠핑장에서 숙박합니다.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 캠핑카 · 포사르달루르 캠핑장</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>캠핑카 조식</strong>
+                <small>이동 전 간단히 준비해서 먹기</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>요쿨살론 주변 간단 식사</strong>
+                <small>빙하 라군 투어 전후로 현장 결정</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>파크후스</strong>
+                <small>호픈 지역 인기 레스토랑. 추천 메뉴: 랑구스틴, 해산물, 양고기 스테이크</small>
+                <a class="meal-button" href="https://pakkhus.is/" target="_blank">더 보기</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card">
+        <div class="date-badge blue">6/10<br>(수)</div>
+        <div>
+          <h3>링로드 여행 3일차</h3>
+          <p>에질스타디르, 보르가르피외르뒤르 에이스트리, 스투들라길 협곡, 흐베리르 지열 지대를 방문한 뒤 비야르그 캠핑장에서 숙박합니다.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 캠핑카 · 비야르그 캠핑장</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>캠핑카 조식</strong>
+                <small>동부 이동 전 간단히 준비해서 먹기</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>이동 중 간단 식사</strong>
+                <small>에질스타디르 또는 이동 중 현장 결정</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>캠핑장 식사</strong>
+                <small>비야르그 캠핑장에서 캠핑카로 저녁 준비</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card">
+        <div class="date-badge green">6/11<br>(목)</div>
+        <div>
+          <h3>링로드 여행 4일차</h3>
+          <p>비야르그 캠핑장에서 출발해 고다포스 폭포와 근처 도시 아쿠레이리를 방문합니다. 이후 다음 이동 일정에 맞춰 공항으로 이동합니다.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 캠핑카 반납 후 Airbnb 숙소 체크인 예정</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>캠핑카 조식</strong>
+                <small>캠핑카 마지막 아침 식사</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>아쿠레이리 근처 식사</strong>
+                <small>도시 방문하면서 현장 결정</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>Airbnb 숙소 식사</strong>
+                <small>숙소 체크인 후 장 본 음식으로 편하게 저녁 먹기</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card">
+        <div class="date-badge gold">6/12<br>(금)</div>
+        <div>
+          <h3>링로드 여행 마무리</h3>
+          <p>키르큐펠스포스, 아르나르스타피, 이트리 퉁가, 스나이펠스네스 반도, 흐밤스비크 온천을 방문한 뒤 캐리어를 픽업합니다. 이후 공항이 있는 케플라비크로 이동해 호텔에서 숙박하며, 다음 날 이른 새벽 출국을 위해 푹 쉬는 일정입니다.</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 케플라비크 공항 근처 호텔 · 예약 예정</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>Airbnb 숙소 조식</strong>
+                <small>출발 전 간단히 먹고 이동 시작</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>스나이펠스네스 이동 중 식사</strong>
+                <small>동선에 맞춰 현장 결정</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>케플라비크 호텔 근처 식사</strong>
+                <small>다음 날 새벽 출국을 위해 무리하지 않고 가볍게</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day-card">
+        <div class="date-badge">6/13<br>(토)</div>
+        <div>
+          <h3>다시 런던에서 각자의 집으로!</h3>
+          <p>아침 일찍 런던 히드로 공항에 도착해 오후에 출발하는 일정이에요. 저희는 다음 날 아침에 출발이라 공항 근처에 호텔을 하나 잡았으니까, 여기서 쉬다가 다시 공항에서 체크인하고 비행기 타면 됩니다. 토요일에 출발하지만 한국 시간으로는 일요일 오후에 도착하는 점 기억하세요!</p>
+
+          <div class="itinerary-meta">
+            <div class="stay-note"><strong>숙소:</strong> 체크아웃 후 공항 이동 / 런던 공항 근처 호텔 예정</div>
+
+            <div class="meal-grid">
+              <div class="meal-card">
+                <span>아침</span>
+                <strong>케플라비크 공항 또는 기내식</strong>
+                <small>아주 이른 이동이라 공항에서 간단히</small>
+              </div>
+
+              <div class="meal-card">
+                <span>점심</span>
+                <strong>런던 도착 후 간단 식사</strong>
+                <small>히드로 공항 또는 호텔 근처에서 현장 결정</small>
+              </div>
+
+              <div class="meal-card">
+                <span>저녁</span>
+                <strong>출국 전 마지막 식사</strong>
+                <small>비행 전 컨디션 보고 가볍게 먹기</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1efYWe5qINTmWxUcBwVr3j924gCmQxmk&ehbc=2E312F" width="640" height="480"></iframe>
+    </div>
+  </div>
+</section>
 
 <section id="places">
   <div class="section-head">
