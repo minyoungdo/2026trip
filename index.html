@@ -559,116 +559,61 @@
   }
 }
 
-.schedule-section {
-  padding-top: 2rem;
-}
-
-.schedule-board {
+.schedule-window {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 2rem;
   box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.schedule-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.schedule-controls button {
+  border: 0;
+  border-radius: 999px;
+  padding: .75rem 1rem;
+  background: var(--charcoal);
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.schedule-range {
+  font-weight: 900;
+  color: var(--muted);
+}
+
+.schedule-viewport {
   overflow-x: auto;
-  margin-bottom: 2rem;
-}
-
-.schedule-title {
-  padding: 1.25rem 1.25rem 0;
-}
-
-.schedule-title h3 {
-  margin: 0;
-  font-size: 1.3rem;
 }
 
 .schedule-grid {
   min-width: 980px;
   display: grid;
-  grid-template-columns: 72px repeat(var(--days), minmax(160px, 1fr));
-  position: relative;
-}
-
-.time-col,
-.day-col {
-  position: relative;
-  height: 1024px;
-  background-image:
-    linear-gradient(to bottom, rgba(32,33,36,.14) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(32,33,36,.06) 1px, transparent 1px);
-  background-size: 100% 64px, 100% 32px;
-}
-
-.time-col {
-  border-right: 1px solid var(--line);
-  background-color: #fbf4ea;
-}
-
-.time-label {
-  position: absolute;
-  left: .75rem;
-  transform: translateY(-50%);
-  font-size: .75rem;
-  color: var(--muted);
-  font-weight: 800;
+  grid-template-columns: 72px repeat(4, minmax(180px, 1fr));
 }
 
 .day-col {
-  border-right: 1px solid var(--line);
-  padding: 2.6rem .5rem .5rem;
+  display: none;
 }
 
-.day-head {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  height: 2.4rem;
-  margin: -2.6rem -.5rem .5rem;
-  padding: .55rem .65rem;
-  background: rgba(255,253,248,.92);
-  border-bottom: 1px solid var(--line);
-  font-weight: 900;
-  font-size: .9rem;
-}
-
-.event {
-  position: absolute;
-  left: .5rem;
-  right: .5rem;
-  top: calc(var(--start) * 32px + 2.7rem);
-  height: calc(var(--span) * 32px - 6px);
-  padding: .55rem .6rem;
-  border-radius: .9rem;
-  background: #f7efe5;
-  border: 1px solid var(--line);
-  overflow: hidden;
-  font-size: .78rem;
-  line-height: 1.35;
-}
-
-.event strong {
+.day-col.visible {
   display: block;
-  font-size: .82rem;
-  margin-bottom: .2rem;
 }
 
-.event small {
-  display: block;
+.schedule-empty {
+  padding: 2rem;
   color: var(--muted);
-}
-
-.event.food { background: #fff1d6; }
-.event.move { background: #e7f3f6; }
-.event.stay { background: #e6eadf; }
-.event.tour { background: #f2e4d1; }
-.event.rest { background: #f6eeee; }
-
-@media (max-width: 680px) {
-  .schedule-grid {
-    min-width: 860px;
-  }
-}
-
-
+  text-align: center;
+}    
     
   </style>
 
@@ -810,184 +755,333 @@ setInterval(() => {
 }, 3500);
 </script>
 
+<style>
+.schedule-section { padding-top: 2rem; }
+
+.schedule-window {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.schedule-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.schedule-controls button {
+  border: 0;
+  border-radius: 999px;
+  padding: .75rem 1rem;
+  background: var(--charcoal);
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.schedule-controls button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.schedule-range {
+  font-weight: 900;
+  color: var(--muted);
+  text-align: center;
+}
+
+.schedule-viewport { overflow-x: auto; }
+
+.schedule-grid {
+  min-width: 980px;
+  display: grid;
+  grid-template-columns: 72px repeat(4, minmax(180px, 1fr));
+}
+
+.time-col,
+.day-col {
+  position: relative;
+  height: 1024px;
+  background-image:
+    linear-gradient(to bottom, rgba(32,33,36,.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(32,33,36,.06) 1px, transparent 1px);
+  background-size: 100% 64px, 100% 32px;
+}
+
+.time-col {
+  border-right: 1px solid var(--line);
+  background-color: #fbf4ea;
+}
+
+.time-label {
+  position: absolute;
+  left: .75rem;
+  transform: translateY(-50%);
+  font-size: .75rem;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.day-col {
+  display: none;
+  border-right: 1px solid var(--line);
+  padding: 2.6rem .5rem .5rem;
+}
+
+.day-col.visible { display: block; }
+
+.day-head {
+  height: 2.4rem;
+  margin: -2.6rem -.5rem .5rem;
+  padding: .55rem .65rem;
+  background: rgba(255,253,248,.92);
+  border-bottom: 1px solid var(--line);
+  font-weight: 900;
+  font-size: .9rem;
+}
+
+.event {
+  position: absolute;
+  left: .5rem;
+  right: .5rem;
+  top: calc(var(--start) * 32px + 2.7rem);
+  height: calc(var(--span) * 32px - 6px);
+  padding: .55rem .6rem;
+  border-radius: .9rem;
+  background: #f7efe5;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  font-size: .78rem;
+  line-height: 1.35;
+}
+
+.event strong { display: block; font-size: .82rem; margin-bottom: .2rem; }
+.event small { display: block; color: var(--muted); }
+
+.event.food { background: #fff1d6; }
+.event.move { background: #e7f3f6; }
+.event.stay { background: #e6eadf; }
+.event.tour { background: #f2e4d1; }
+.event.rest { background: #f6eeee; }
+
+@media (max-width: 680px) {
+  .schedule-grid { min-width: 860px; }
+}
+</style>
 
 <section id="schedule" class="schedule-section">
   <div class="section-head">
     <h2>시간표로 보기</h2>
-    <p>오전 7시부터 오후 11시까지 하루 흐름을 한눈에 볼 수 있도록 정리했어요.</p>
+    <p>날짜를 넘겨가며 하루 흐름을 한눈에 볼 수 있도록 정리했어요.</p>
   </div>
 
-  <div class="schedule-board">
-    <div class="schedule-title"><h3>런던 · 6/3–6/6</h3></div>
-    <div class="schedule-grid" style="--days: 4;">
-      <div class="time-col">
-        <div class="time-label" style="top:0px;">7AM</div>
-        <div class="time-label" style="top:64px;">8AM</div>
-        <div class="time-label" style="top:128px;">9AM</div>
-        <div class="time-label" style="top:192px;">10AM</div>
-        <div class="time-label" style="top:256px;">11AM</div>
-        <div class="time-label" style="top:320px;">12PM</div>
-        <div class="time-label" style="top:384px;">1PM</div>
-        <div class="time-label" style="top:448px;">2PM</div>
-        <div class="time-label" style="top:512px;">3PM</div>
-        <div class="time-label" style="top:576px;">4PM</div>
-        <div class="time-label" style="top:640px;">5PM</div>
-        <div class="time-label" style="top:704px;">6PM</div>
-        <div class="time-label" style="top:768px;">7PM</div>
-        <div class="time-label" style="top:832px;">8PM</div>
-        <div class="time-label" style="top:896px;">9PM</div>
-        <div class="time-label" style="top:960px;">10PM</div>
-        <div class="time-label" style="top:1024px;">11PM</div>
-      </div>
-
-      <div class="day-col">
-        <div class="day-head">6/3 수</div>
-        <div class="event move" style="--start:21; --span:2;"><strong>히드로 공항 가족 상봉</strong><small>KE907 도착 후 만나기</small></div>
-        <div class="event move" style="--start:24; --span:2;"><strong>호텔 이동 + 체크인</strong><small>하얏트 리젠시 런던 블랙프라이어스</small></div>
-        <div class="event food" style="--start:27; --span:3;"><strong>저녁 + 근처 펍</strong><small>가볍게 산책 후 첫날 마무리</small></div>
-        <div class="event stay" style="--start:31; --span:1;"><strong>숙소</strong><small>Hyatt Regency London Blackfriars</small></div>
-      </div>
-
-      <div class="day-col">
-        <div class="day-head">6/4 목</div>
-        <div class="event food" style="--start:2; --span:2;"><strong>호텔 조식</strong><small>여유롭게 시작</small></div>
-        <div class="event tour" style="--start:5; --span:3;"><strong>세인트폴 대성당</strong><small>돔 전망대 + 밀레니엄 브리지</small></div>
-        <div class="event tour" style="--start:9; --span:2;"><strong>타워 브리지</strong><small>강변 산책 + 사진</small></div>
-        <div class="event food" style="--start:11; --span:3;"><strong>점심 · 버로우 마켓</strong><small>다양한 음식 맛보기</small></div>
-        <div class="event food" style="--start:16; --span:2;"><strong>애프터눈 티</strong><small>포트넘 앤 메이슨</small></div>
-        <div class="event food" style="--start:20; --span:2;"><strong>저녁 · Dishoom</strong><small>Covent Garden · 17:00 예약</small></div>
-        <div class="event tour" style="--start:23; --span:3;"><strong>피카딜리 + 소호</strong><small>런던 밤 분위기 구경</small></div>
-        <div class="event stay" style="--start:30; --span:2;"><strong>숙소</strong><small>Hyatt Regency London Blackfriars</small></div>
-      </div>
-
-      <div class="day-col">
-        <div class="day-head">6/5 금</div>
-        <div class="event food" style="--start:2; --span:2;"><strong>아침</strong><small>호텔 조식 or 가져온 한식</small></div>
-        <div class="event tour" style="--start:6; --span:14;"><strong>프라이빗 런던 투어</strong><small>트라팔가 광장, 빅 벤, 버킹엄 궁전, 크루즈, 대영박물관</small></div>
-        <div class="event food" style="--start:12; --span:2;"><strong>점심</strong><small>투어 중 결정</small></div>
-        <div class="event food" style="--start:22; --span:3;"><strong>저녁 · Co & Ko</strong><small>한식 · 18:00 예약</small></div>
-        <div class="event stay" style="--start:30; --span:2;"><strong>숙소</strong><small>Hyatt Regency London Blackfriars</small></div>
-      </div>
-
-      <div class="day-col">
-        <div class="day-head">6/6 토</div>
-        <div class="event food" style="--start:3; --span:2;"><strong>아침 · Darwin Brasserie</strong><small>08:30 예약</small></div>
-        <div class="event move" style="--start:6; --span:2;"><strong>호텔 복귀 + 짐 정리</strong><small>하얏트 체크아웃</small></div>
-        <div class="event move" style="--start:9; --span:4;"><strong>개트윅 공항 이동</strong><small>여유 있게 출발</small></div>
-        <div class="event move" style="--start:17; --span:5;"><strong>FI473 런던 → 레이캬비크</strong><small>15:40 출발 · 17:55 도착</small></div>
-        <div class="event stay" style="--start:27; --span:3;"><strong>숙소</strong><small>Swan House Reykjavík</small></div>
-      </div>
+  <div class="schedule-window">
+    <div class="schedule-controls">
+      <button type="button" id="prevSchedule">← 이전 날짜</button>
+      <div class="schedule-range" id="scheduleRange">6/3 수 – 6/6 토</div>
+      <button type="button" id="nextSchedule">다음 날짜 →</button>
     </div>
-  </div>
 
-  <div class="schedule-board">
-    <div class="schedule-title"><h3>레이캬비크 + 링로드 초반 · 6/7–6/10</h3></div>
-    <div class="schedule-grid" style="--days: 4;">
-      <div class="time-col">
-        <div class="time-label" style="top:0px;">7AM</div><div class="time-label" style="top:64px;">8AM</div><div class="time-label" style="top:128px;">9AM</div><div class="time-label" style="top:192px;">10AM</div><div class="time-label" style="top:256px;">11AM</div><div class="time-label" style="top:320px;">12PM</div><div class="time-label" style="top:384px;">1PM</div><div class="time-label" style="top:448px;">2PM</div><div class="time-label" style="top:512px;">3PM</div><div class="time-label" style="top:576px;">4PM</div><div class="time-label" style="top:640px;">5PM</div><div class="time-label" style="top:704px;">6PM</div><div class="time-label" style="top:768px;">7PM</div><div class="time-label" style="top:832px;">8PM</div><div class="time-label" style="top:896px;">9PM</div><div class="time-label" style="top:960px;">10PM</div><div class="time-label" style="top:1024px;">11PM</div>
-      </div>
+    <div class="schedule-viewport">
+      <div class="schedule-grid">
 
-      <div class="day-col">
-        <div class="day-head">6/7 일</div>
-        <div class="event food" style="--start:3; --span:2;"><strong>아침</strong><small>Sandholt 또는 근처 카페</small></div>
-        <div class="event tour" style="--start:5; --span:4;"><strong>레이캬비크 시내</strong><small>레인보우 스트리트 + 할그림스키르캬</small></div>
-        <div class="event food" style="--start:10; --span:2;"><strong>점심</strong><small>Svarta Kaffið / Reykjavík Kitchen 후보</small></div>
-        <div class="event rest" style="--start:13; --span:2;"><strong>짐 정리 + 캐리어 맡기기</strong><small>링로드 준비</small></div>
-        <div class="event tour" style="--start:16; --span:5;"><strong>스카이 라군</strong><small>온천 + 휴식</small></div>
-        <div class="event food" style="--start:22; --span:2;"><strong>저녁 + 장보기</strong><small>캠핑카 식재료 준비</small></div>
-        <div class="event stay" style="--start:28; --span:3;"><strong>숙소</strong><small>Swan House Reykjavík</small></div>
-      </div>
+        <div class="time-col">
+          <div class="time-label" style="top:0px;">7AM</div>
+          <div class="time-label" style="top:64px;">8AM</div>
+          <div class="time-label" style="top:128px;">9AM</div>
+          <div class="time-label" style="top:192px;">10AM</div>
+          <div class="time-label" style="top:256px;">11AM</div>
+          <div class="time-label" style="top:320px;">12PM</div>
+          <div class="time-label" style="top:384px;">1PM</div>
+          <div class="time-label" style="top:448px;">2PM</div>
+          <div class="time-label" style="top:512px;">3PM</div>
+          <div class="time-label" style="top:576px;">4PM</div>
+          <div class="time-label" style="top:640px;">5PM</div>
+          <div class="time-label" style="top:704px;">6PM</div>
+          <div class="time-label" style="top:768px;">7PM</div>
+          <div class="time-label" style="top:832px;">8PM</div>
+          <div class="time-label" style="top:896px;">9PM</div>
+          <div class="time-label" style="top:960px;">10PM</div>
+          <div class="time-label" style="top:1024px;">11PM</div>
+        </div>
 
-      <div class="day-col">
-        <div class="day-head">6/8 월</div>
-        <div class="event food" style="--start:1; --span:1;"><strong>아침</strong><small>간단히 먹고 체크아웃</small></div>
-        <div class="event move" style="--start:4; --span:2;"><strong>캠핑카 픽업</strong><small>09:00 · Keflavík 호텔 픽업</small></div>
-        <div class="event tour" style="--start:7; --span:3;"><strong>싱벨리르 국립공원</strong><small>골든 서클 시작</small></div>
-        <div class="event tour" style="--start:11; --span:2;"><strong>브뤼아르포스</strong><small>푸른 폭포</small></div>
-        <div class="event food" style="--start:13; --span:2;"><strong>점심</strong><small>Friðheimar 후보 or 이동 중 간단식</small></div>
-        <div class="event tour" style="--start:16; --span:2;"><strong>게이시르</strong><small>지열 지대</small></div>
-        <div class="event tour" style="--start:19; --span:2;"><strong>굴포스</strong><small>대표 폭포</small></div>
-        <div class="event tour" style="--start:22; --span:2;"><strong>하이포스</strong><small>가능하면 방문</small></div>
-        <div class="event stay" style="--start:28; --span:3;"><strong>숙소</strong><small>타크길 캠핑장</small></div>
-      </div>
+        <div class="day-col" data-date="6/3 수">
+          <div class="day-head">6/3 수</div>
+          <div class="event move" style="--start:21; --span:2;"><strong>히드로 공항 가족 상봉</strong><small>KE907 도착 후 만나기</small></div>
+          <div class="event move" style="--start:24; --span:2;"><strong>호텔 이동 + 체크인</strong><small>하얏트 리젠시 런던 블랙프라이어스</small></div>
+          <div class="event food" style="--start:27; --span:3;"><strong>저녁 + 근처 펍</strong><small>가볍게 산책 후 첫날 마무리</small></div>
+          <div class="event stay" style="--start:31; --span:1;"><strong>숙소</strong><small>Hyatt Regency London Blackfriars</small></div>
+        </div>
 
-      <div class="day-col">
-        <div class="day-head">6/9 화</div>
-        <div class="event food" style="--start:1; --span:1;"><strong>캠핑카 조식</strong><small>출발 전 간단히</small></div>
-        <div class="event move" style="--start:3; --span:4;"><strong>요쿨살론 방향 이동</strong><small>남동부 장거리 이동</small></div>
-        <div class="event tour" style="--start:8; --span:2;"><strong>스카프타펠 / 중간 포인트</strong><small>시간 따라 조정</small></div>
-        <div class="event food" style="--start:11; --span:2;"><strong>점심</strong><small>이동 중 간단 식사</small></div>
-        <div class="event tour" style="--start:15; --span:3;"><strong>요쿨살론 빙하 라군</strong><small>보트 투어</small></div>
-        <div class="event tour" style="--start:18; --span:1;"><strong>다이아몬드 비치</strong><small>빙하 조각 해변</small></div>
-        <div class="event food" style="--start:22; --span:3;"><strong>저녁 · Pakkhús</strong><small>랑구스틴/해산물</small></div>
-        <div class="event stay" style="--start:28; --span:3;"><strong>숙소</strong><small>포사르달루르 캠핑장</small></div>
-      </div>
+        <div class="day-col" data-date="6/4 목">
+          <div class="day-head">6/4 목</div>
+          <div class="event food" style="--start:2; --span:2;"><strong>호텔 조식</strong><small>여유롭게 시작</small></div>
+          <div class="event tour" style="--start:5; --span:3;"><strong>세인트폴 대성당</strong><small>돔 전망대 + 밀레니엄 브리지</small></div>
+          <div class="event tour" style="--start:9; --span:2;"><strong>타워 브리지</strong><small>강변 산책 + 사진</small></div>
+          <div class="event food" style="--start:11; --span:3;"><strong>점심 · 버로우 마켓</strong><small>다양한 음식 맛보기</small></div>
+          <div class="event food" style="--start:16; --span:2;"><strong>애프터눈 티</strong><small>포트넘 앤 메이슨</small></div>
+          <div class="event food" style="--start:20; --span:2;"><strong>저녁 · Dishoom</strong><small>Covent Garden · 17:00 예약</small></div>
+          <div class="event tour" style="--start:23; --span:3;"><strong>피카딜리 + 소호</strong><small>런던 밤 분위기 구경</small></div>
+          <div class="event stay" style="--start:30; --span:2;"><strong>숙소</strong><small>Hyatt Regency London Blackfriars</small></div>
+        </div>
 
-      <div class="day-col">
-        <div class="day-head">6/10 수</div>
-        <div class="event food" style="--start:1; --span:1;"><strong>캠핑카 조식</strong><small>간단히 준비</small></div>
-        <div class="event move" style="--start:7; --span:2;"><strong>에질스타디르</strong><small>동부 거점</small></div>
-        <div class="event food" style="--start:10; --span:2;"><strong>점심</strong><small>에질스타디르 또는 이동 중</small></div>
-        <div class="event tour" style="--start:13; --span:3;"><strong>보르가르피외르뒤르 에이스트리</strong><small>퍼핀/해안 마을</small></div>
-        <div class="event tour" style="--start:18; --span:3;"><strong>스투들라길 협곡</strong><small>현무암 협곡</small></div>
-        <div class="event tour" style="--start:23; --span:2;"><strong>흐베리르 지열 지대</strong><small>다른 행성 같은 풍경</small></div>
-        <div class="event stay" style="--start:28; --span:3;"><strong>숙소</strong><small>비야르그 캠핑장</small></div>
-      </div>
-    </div>
-  </div>
+        <div class="day-col" data-date="6/5 금">
+          <div class="day-head">6/5 금</div>
+          <div class="event food" style="--start:2; --span:2;"><strong>아침</strong><small>호텔 조식 or 가져온 한식</small></div>
+          <div class="event tour" style="--start:6; --span:14;"><strong>프라이빗 런던 투어</strong><small>트라팔가 광장, 빅 벤, 버킹엄 궁전, 크루즈, 대영박물관</small></div>
+          <div class="event food" style="--start:12; --span:2;"><strong>점심</strong><small>투어 중 결정</small></div>
+          <div class="event food" style="--start:22; --span:3;"><strong>저녁 · Co & Ko</strong><small>한식 · 18:00 예약</small></div>
+          <div class="event stay" style="--start:30; --span:2;"><strong>숙소</strong><small>Hyatt Regency London Blackfriars</small></div>
+        </div>
 
-  <div class="schedule-board">
-    <div class="schedule-title"><h3>링로드 후반 + 귀국 · 6/11–6/14</h3></div>
-    <div class="schedule-grid" style="--days: 4;">
-      <div class="time-col">
-        <div class="time-label" style="top:0px;">7AM</div><div class="time-label" style="top:64px;">8AM</div><div class="time-label" style="top:128px;">9AM</div><div class="time-label" style="top:192px;">10AM</div><div class="time-label" style="top:256px;">11AM</div><div class="time-label" style="top:320px;">12PM</div><div class="time-label" style="top:384px;">1PM</div><div class="time-label" style="top:448px;">2PM</div><div class="time-label" style="top:512px;">3PM</div><div class="time-label" style="top:576px;">4PM</div><div class="time-label" style="top:640px;">5PM</div><div class="time-label" style="top:704px;">6PM</div><div class="time-label" style="top:768px;">7PM</div><div class="time-label" style="top:832px;">8PM</div><div class="time-label" style="top:896px;">9PM</div><div class="time-label" style="top:960px;">10PM</div><div class="time-label" style="top:1024px;">11PM</div>
-      </div>
+        <div class="day-col" data-date="6/6 토">
+          <div class="day-head">6/6 토</div>
+          <div class="event food" style="--start:3; --span:2;"><strong>아침 · Darwin Brasserie</strong><small>08:30 예약</small></div>
+          <div class="event move" style="--start:6; --span:2;"><strong>호텔 복귀 + 짐 정리</strong><small>하얏트 체크아웃</small></div>
+          <div class="event move" style="--start:9; --span:4;"><strong>개트윅 공항 이동</strong><small>여유 있게 출발</small></div>
+          <div class="event move" style="--start:17; --span:5;"><strong>FI473 런던 → 레이캬비크</strong><small>15:40 출발 · 17:55 도착</small></div>
+          <div class="event stay" style="--start:27; --span:3;"><strong>숙소</strong><small>Swan House Reykjavík</small></div>
+        </div>
 
-      <div class="day-col">
-        <div class="day-head">6/11 목</div>
-        <div class="event food" style="--start:1; --span:1;"><strong>캠핑카 조식</strong><small>마지막 캠핑카 아침</small></div>
-        <div class="event tour" style="--start:4; --span:2;"><strong>고다포스</strong><small>북부 대표 폭포</small></div>
-        <div class="event tour" style="--start:8; --span:3;"><strong>아쿠레이리</strong><small>북부 도시 산책</small></div>
-        <div class="event food" style="--start:11; --span:2;"><strong>점심</strong><small>아쿠레이리 근처</small></div>
-        <div class="event move" style="--start:14; --span:4;"><strong>케플라비크 방향 장거리 이동</strong><small>다음 날 반납 준비</small></div>
-        <div class="event stay" style="--start:24; --span:3;"><strong>숙소</strong><small>케플라비크 Airbnb</small></div>
-      </div>
+        <div class="day-col" data-date="6/7 일">
+          <div class="day-head">6/7 일</div>
+          <div class="event food" style="--start:3; --span:2;"><strong>아침</strong><small>Sandholt 또는 근처 카페</small></div>
+          <div class="event tour" style="--start:5; --span:4;"><strong>레이캬비크 시내</strong><small>레인보우 스트리트 + 할그림스키르캬</small></div>
+          <div class="event food" style="--start:10; --span:2;"><strong>점심</strong><small>Svarta Kaffið / Reykjavík Kitchen 후보</small></div>
+          <div class="event rest" style="--start:13; --span:2;"><strong>짐 정리 + 캐리어 맡기기</strong><small>링로드 준비</small></div>
+          <div class="event tour" style="--start:16; --span:5;"><strong>스카이 라군</strong><small>온천 + 휴식</small></div>
+          <div class="event food" style="--start:22; --span:2;"><strong>저녁 + 장보기</strong><small>캠핑카 식재료 준비</small></div>
+          <div class="event stay" style="--start:28; --span:3;"><strong>숙소</strong><small>Swan House Reykjavík</small></div>
+        </div>
 
-      <div class="day-col">
-        <div class="day-head">6/12 금</div>
-        <div class="event food" style="--start:1; --span:1;"><strong>숙소 조식</strong><small>출발 전 간단히</small></div>
-        <div class="event tour" style="--start:4; --span:2;"><strong>키르큐펠스포스</strong><small>대표 포토 스팟</small></div>
-        <div class="event tour" style="--start:8; --span:2;"><strong>아르나르스타피</strong><small>해안 절벽 산책</small></div>
-        <div class="event food" style="--start:10; --span:2;"><strong>점심</strong><small>스나이펠스네스 이동 중</small></div>
-        <div class="event tour" style="--start:13; --span:2;"><strong>이트리 퉁가</strong><small>물개 해변</small></div>
-        <div class="event tour" style="--start:18; --span:3;"><strong>흐밤스비크 온천</strong><small>여행 마지막 온천</small></div>
-        <div class="event move" style="--start:23; --span:2;"><strong>케플라비크 이동</strong><small>공항 근처로 이동</small></div>
-        <div class="event stay" style="--start:26; --span:4;"><strong>숙소</strong><small>케플라비크 Airbnb</small></div>
-      </div>
+        <div class="day-col" data-date="6/8 월">
+          <div class="day-head">6/8 월</div>
+          <div class="event food" style="--start:1; --span:1;"><strong>아침</strong><small>간단히 먹고 체크아웃</small></div>
+          <div class="event move" style="--start:4; --span:2;"><strong>캠핑카 픽업</strong><small>09:00 · Keflavík 호텔 픽업</small></div>
+          <div class="event tour" style="--start:7; --span:3;"><strong>싱벨리르 국립공원</strong><small>골든 서클 시작</small></div>
+          <div class="event tour" style="--start:11; --span:2;"><strong>브뤼아르포스</strong><small>푸른 폭포</small></div>
+          <div class="event food" style="--start:13; --span:2;"><strong>점심</strong><small>Friðheimar 후보 or 이동 중 간단식</small></div>
+          <div class="event tour" style="--start:16; --span:2;"><strong>게이시르</strong><small>지열 지대</small></div>
+          <div class="event tour" style="--start:19; --span:2;"><strong>굴포스</strong><small>대표 폭포</small></div>
+          <div class="event tour" style="--start:22; --span:2;"><strong>하이포스</strong><small>가능하면 방문</small></div>
+          <div class="event stay" style="--start:28; --span:3;"><strong>숙소</strong><small>타크길 캠핑장</small></div>
+        </div>
 
-      <div class="day-col">
-        <div class="day-head">6/13 토</div>
-        <div class="event move" style="--start:-6; --span:2;"><strong>새벽 공항 이동</strong><small>04:00 Airbnb 출발</small></div>
-        <div class="event move" style="--start:-4; --span:1;"><strong>캠핑카 반납</strong><small>05:00 · KEF 공항</small></div>
-        <div class="event move" style="--start:1; --span:5;"><strong>FI450 레이캬비크 → 런던</strong><small>07:40 출발 · 11:55 도착</small></div>
-        <div class="event move" style="--start:10; --span:2;"><strong>입국 + 짐 찾기</strong><small>히드로 공항</small></div>
-        <div class="event stay" style="--start:13; --span:5;"><strong>Renaissance London Heathrow Hotel</strong><small>체크인 후 휴식</small></div>
-        <div class="event food" style="--start:18; --span:2;"><strong>늦은 점심 / 이른 저녁</strong><small>호텔 근처에서 가볍게</small></div>
-        <div class="event move" style="--start:21; --span:2;"><strong>공항 이동 + 대한항공 체크인</strong><small>KE908 · 16:30쯤 호텔 출발 추천</small></div>
-        <div class="event move" style="--start:25; --span:2;"><strong>KE908 런던 → 인천</strong><small>19:35 출발</small></div>
-        <div class="event stay" style="--start:28; --span:3;"><strong>우리 숙소</strong><small>다음 날 UA958 탑승 전 휴식</small></div>
-      </div>
+        <div class="day-col" data-date="6/9 화">
+          <div class="day-head">6/9 화</div>
+          <div class="event food" style="--start:1; --span:1;"><strong>캠핑카 조식</strong><small>출발 전 간단히</small></div>
+          <div class="event move" style="--start:3; --span:4;"><strong>요쿨살론 방향 이동</strong><small>남동부 장거리 이동</small></div>
+          <div class="event tour" style="--start:8; --span:2;"><strong>스카프타펠 / 중간 포인트</strong><small>시간 따라 조정</small></div>
+          <div class="event food" style="--start:11; --span:2;"><strong>점심</strong><small>이동 중 간단 식사</small></div>
+          <div class="event tour" style="--start:15; --span:3;"><strong>요쿨살론 빙하 라군</strong><small>보트 투어</small></div>
+          <div class="event tour" style="--start:18; --span:1;"><strong>다이아몬드 비치</strong><small>빙하 조각 해변</small></div>
+          <div class="event food" style="--start:22; --span:3;"><strong>저녁 · Pakkhús</strong><small>랑구스틴/해산물</small></div>
+          <div class="event stay" style="--start:28; --span:3;"><strong>숙소</strong><small>포사르달루르 캠핑장</small></div>
+        </div>
 
-      <div class="day-col">
-        <div class="day-head">6/14 일</div>
-        <div class="event move" style="--start:-1; --span:2;"><strong>공항 이동</strong><small>UA958 탑승 준비</small></div>
-        <div class="event move" style="--start:2; --span:3;"><strong>UA958 런던 → 미국</strong><small>08:00 출발</small></div>
+        <div class="day-col" data-date="6/10 수">
+          <div class="day-head">6/10 수</div>
+          <div class="event food" style="--start:1; --span:1;"><strong>캠핑카 조식</strong><small>간단히 준비</small></div>
+          <div class="event move" style="--start:7; --span:2;"><strong>에질스타디르</strong><small>동부 거점</small></div>
+          <div class="event food" style="--start:10; --span:2;"><strong>점심</strong><small>에질스타디르 또는 이동 중</small></div>
+          <div class="event tour" style="--start:13; --span:3;"><strong>보르가르피외르뒤르 에이스트리</strong><small>퍼핀/해안 마을</small></div>
+          <div class="event tour" style="--start:18; --span:3;"><strong>스투들라길 협곡</strong><small>현무암 협곡</small></div>
+          <div class="event tour" style="--start:23; --span:2;"><strong>흐베리르 지열 지대</strong><small>다른 행성 같은 풍경</small></div>
+          <div class="event stay" style="--start:28; --span:3;"><strong>숙소</strong><small>비야르그 캠핑장</small></div>
+        </div>
+
+        <div class="day-col" data-date="6/11 목">
+          <div class="day-head">6/11 목</div>
+          <div class="event food" style="--start:1; --span:1;"><strong>캠핑카 조식</strong><small>마지막 캠핑카 아침</small></div>
+          <div class="event tour" style="--start:4; --span:2;"><strong>고다포스</strong><small>북부 대표 폭포</small></div>
+          <div class="event tour" style="--start:8; --span:3;"><strong>아쿠레이리</strong><small>북부 도시 산책</small></div>
+          <div class="event food" style="--start:11; --span:2;"><strong>점심</strong><small>아쿠레이리 근처</small></div>
+          <div class="event move" style="--start:14; --span:4;"><strong>케플라비크 방향 장거리 이동</strong><small>다음 날 반납 준비</small></div>
+          <div class="event stay" style="--start:24; --span:3;"><strong>숙소</strong><small>케플라비크 Airbnb</small></div>
+        </div>
+
+        <div class="day-col" data-date="6/12 금">
+          <div class="day-head">6/12 금</div>
+          <div class="event food" style="--start:1; --span:1;"><strong>숙소 조식</strong><small>출발 전 간단히</small></div>
+          <div class="event tour" style="--start:4; --span:2;"><strong>키르큐펠스포스</strong><small>대표 포토 스팟</small></div>
+          <div class="event tour" style="--start:8; --span:2;"><strong>아르나르스타피</strong><small>해안 절벽 산책</small></div>
+          <div class="event food" style="--start:10; --span:2;"><strong>점심</strong><small>스나이펠스네스 이동 중</small></div>
+          <div class="event tour" style="--start:13; --span:2;"><strong>이트리 퉁가</strong><small>물개 해변</small></div>
+          <div class="event tour" style="--start:18; --span:3;"><strong>흐밤스비크 온천</strong><small>여행 마지막 온천</small></div>
+          <div class="event move" style="--start:23; --span:2;"><strong>케플라비크 이동</strong><small>공항 근처로 이동</small></div>
+          <div class="event stay" style="--start:26; --span:4;"><strong>숙소</strong><small>케플라비크 Airbnb</small></div>
+        </div>
+
+        <div class="day-col" data-date="6/13 토">
+          <div class="day-head">6/13 토</div>
+          <div class="event move" style="--start:0; --span:2;"><strong>새벽 일정</strong><small>04:00 공항 이동 · 05:00 캠핑카 반납</small></div>
+          <div class="event move" style="--start:1; --span:5;"><strong>FI450 레이캬비크 → 런던</strong><small>07:40 출발 · 11:55 도착</small></div>
+          <div class="event move" style="--start:10; --span:2;"><strong>입국 + 짐 찾기</strong><small>히드로 공항</small></div>
+          <div class="event stay" style="--start:13; --span:5;"><strong>Renaissance London Heathrow Hotel</strong><small>체크인 후 휴식</small></div>
+          <div class="event food" style="--start:18; --span:2;"><strong>늦은 점심 / 이른 저녁</strong><small>호텔 근처에서 가볍게</small></div>
+          <div class="event move" style="--start:21; --span:2;"><strong>공항 이동 + 대한항공 체크인</strong><small>KE908 · 16:30쯤 호텔 출발 추천</small></div>
+          <div class="event move" style="--start:25; --span:2;"><strong>KE908 런던 → 인천</strong><small>19:35 출발</small></div>
+          <div class="event stay" style="--start:28; --span:3;"><strong>우리 숙소</strong><small>다음 날 UA958 탑승 전 휴식</small></div>
+        </div>
+
+        <div class="day-col" data-date="6/14 일">
+          <div class="day-head">6/14 일</div>
+          <div class="event move" style="--start:0; --span:2;"><strong>공항 이동</strong><small>UA958 탑승 준비</small></div>
+          <div class="event move" style="--start:2; --span:3;"><strong>UA958 런던 → 미국</strong><small>08:00 출발</small></div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
+<script>
+(function () {
+  const days = Array.from(document.querySelectorAll('#schedule .day-col'));
+  const prevBtn = document.getElementById('prevSchedule');
+  const nextBtn = document.getElementById('nextSchedule');
+  const rangeLabel = document.getElementById('scheduleRange');
 
+  let scheduleStart = 0;
+  const daysPerView = 4;
+
+  function renderSchedule() {
+    days.forEach((day, index) => {
+      day.classList.toggle(
+        'visible',
+        index >= scheduleStart && index < scheduleStart + daysPerView
+      );
+    });
+
+    const visibleDays = days.slice(scheduleStart, scheduleStart + daysPerView);
+    const first = visibleDays[0]?.dataset.date || '';
+    const last = visibleDays[visibleDays.length - 1]?.dataset.date || '';
+
+    rangeLabel.textContent = `${first} – ${last}`;
+
+    prevBtn.disabled = scheduleStart === 0;
+    nextBtn.disabled = scheduleStart + daysPerView >= days.length;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    scheduleStart = Math.max(0, scheduleStart - daysPerView);
+    renderSchedule();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    scheduleStart = Math.min(days.length - daysPerView, scheduleStart + daysPerView);
+    renderSchedule();
+  });
+
+  renderSchedule();
+})();
+</script>
     
 <section id="itinerary">
   <div class="section-head">
