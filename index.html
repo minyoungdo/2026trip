@@ -756,7 +756,9 @@ setInterval(() => {
 </script>
 
 <style>
-.schedule-section { padding-top: 2rem; }
+.schedule-section {
+  padding-top: 2rem;
+}
 
 .schedule-window {
   background: var(--paper);
@@ -764,15 +766,20 @@ setInterval(() => {
   border-radius: 2rem;
   box-shadow: var(--shadow);
   overflow: hidden;
+  margin-bottom: 4rem;
 }
 
 .schedule-controls {
+  position: sticky;
+  top: 0;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem;
   border-bottom: 1px solid var(--line);
+  background: rgba(255,253,248,.96);
 }
 
 .schedule-controls button {
@@ -796,83 +803,135 @@ setInterval(() => {
   text-align: center;
 }
 
-.schedule-viewport { overflow-x: auto; }
+.schedule-viewport {
+  overflow-x: auto;
+  padding-bottom: 2rem;
+}
 
 .schedule-grid {
   min-width: 980px;
   display: grid;
-  grid-template-columns: 72px repeat(4, minmax(180px, 1fr));
+  grid-template-columns: 80px repeat(4, minmax(190px, 1fr));
+  background: #fffdf8;
 }
 
 .time-col,
 .day-col {
   position: relative;
-  height: 1024px;
+  height: 1100px;
   background-image:
-    linear-gradient(to bottom, rgba(32,33,36,.14) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(32,33,36,.06) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(32,33,36,.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(32,33,36,.035) 1px, transparent 1px);
   background-size: 100% 64px, 100% 32px;
 }
 
 .time-col {
-  border-right: 1px solid var(--line);
   background-color: #fbf4ea;
+  border-right: 1px solid rgba(32,33,36,.12);
 }
 
 .time-label {
   position: absolute;
-  left: .75rem;
+  right: .75rem;
   transform: translateY(-50%);
-  font-size: .75rem;
-  color: var(--muted);
+  font-size: .72rem;
+  color: rgba(32,33,36,.65);
   font-weight: 800;
 }
 
 .day-col {
   display: none;
-  border-right: 1px solid var(--line);
-  padding: 2.6rem .5rem .5rem;
+  border-right: 1px solid rgba(32,33,36,.08);
+  padding: 2.8rem .6rem 4rem;
 }
 
-.day-col.visible { display: block; }
+.day-col.visible {
+  display: block;
+}
 
 .day-head {
   height: 2.4rem;
-  margin: -2.6rem -.5rem .5rem;
-  padding: .55rem .65rem;
-  background: rgba(255,253,248,.92);
-  border-bottom: 1px solid var(--line);
+  margin: -2.8rem -.6rem .65rem;
+  padding: .6rem .75rem;
+  background: rgba(255,253,248,.96);
+  border-bottom: 1px solid rgba(32,33,36,.10);
   font-weight: 900;
   font-size: .9rem;
 }
 
 .event {
   position: absolute;
-  left: .5rem;
-  right: .5rem;
-  top: calc(var(--start) * 32px + 2.7rem);
-  height: calc(var(--span) * 32px - 6px);
-  padding: .55rem .6rem;
+  left: .7rem;
+  right: .7rem;
+  top: calc(var(--start) * 32px + 3rem);
+  height: calc(var(--span) * 32px - 8px);
+  padding: .55rem .65rem;
   border-radius: .9rem;
   background: #f7efe5;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(32,33,36,.10);
   overflow: hidden;
   font-size: .78rem;
   line-height: 1.35;
+  box-shadow: 0 6px 16px rgba(32,33,36,.04);
 }
 
-.event strong { display: block; font-size: .82rem; margin-bottom: .2rem; }
-.event small { display: block; color: var(--muted); }
+.event strong {
+  display: block;
+  font-size: .82rem;
+  margin-bottom: .22rem;
+}
 
-.event.food { background: #fff1d6; }
-.event.move { background: #e7f3f6; }
-.event.stay { background: #e6eadf; }
-.event.tour { background: #f2e4d1; }
-.event.rest { background: #f6eeee; }
+.event small {
+  display: block;
+  color: var(--muted);
+}
+
+.event.food {
+  background: #fff1d6;
+}
+
+.event.move {
+  background: #e7f3f6;
+}
+
+.event.stay {
+  background: #e6eadf;
+}
+
+.event.tour {
+  background: #f2e4d1;
+}
+
+.event.rest {
+  background: #f6eeee;
+}
 
 @media (max-width: 680px) {
-  .schedule-grid { min-width: 860px; }
+  .schedule-grid {
+    min-width: 900px;
+    grid-template-columns: 72px repeat(4, minmax(180px, 1fr));
+  }
+
+  .schedule-viewport {
+    padding-bottom: 2.5rem;
+  }
+
+  .schedule-controls {
+    gap: .5rem;
+  }
+
+  .schedule-controls button {
+    padding: .65rem .8rem;
+    font-size: .82rem;
+  }
+
+  .schedule-range {
+    font-size: .85rem;
+  }
 }
+</style>
+
+  
 </style>
 
 <section id="schedule" class="schedule-section">
@@ -913,9 +972,9 @@ setInterval(() => {
 
         <div class="day-col" data-date="6/3 수">
           <div class="day-head">6/3 수</div>
-          <div class="event move" style="--start:21; --span:2;"><strong>히드로 공항 가족 상봉</strong><small>KE907 도착 후 만나기</small></div>
+          <div class="event move" style="--start:21; --span:2;"><strong>히드로 공항에서 만나요!</strong><small>민영이랑 토토밥이 공항으로 마중 나가요.</small></div>
           <div class="event move" style="--start:24; --span:2;"><strong>호텔 이동 + 체크인</strong><small>하얏트 리젠시 런던 블랙프라이어스</small></div>
-          <div class="event food" style="--start:27; --span:3;"><strong>저녁 + 근처 펍</strong><small>가볍게 산책 후 첫날 마무리</small></div>
+          <div class="event food" style="--start:27; --span:3;"><strong>호텔 근처 펍에서 식사</strong><small>가볍게 산책 후 첫날 마무리</small></div>
           <div class="event stay" style="--start:31; --span:1;"><strong>숙소</strong><small>Hyatt Regency London Blackfriars</small></div>
         </div>
 
@@ -1020,7 +1079,7 @@ setInterval(() => {
 
         <div class="day-col" data-date="6/13 토">
           <div class="day-head">6/13 토</div>
-          <div class="event move" style="--start:0; --span:2;"><strong>새벽 일정</strong><small>04:00 공항 이동 · 05:00 캠핑카 반납</small></div>
+          <div class="event move" style="--start:0; --span:2;"><small>04:00 공항 이동 · 05:00 캠핑카 반납</small></div>
           <div class="event move" style="--start:1; --span:5;"><strong>FI450 레이캬비크 → 런던</strong><small>07:40 출발 · 11:55 도착</small></div>
           <div class="event move" style="--start:10; --span:2;"><strong>입국 + 짐 찾기</strong><small>히드로 공항</small></div>
           <div class="event stay" style="--start:13; --span:5;"><strong>Renaissance London Heathrow Hotel</strong><small>체크인 후 휴식</small></div>
@@ -1116,7 +1175,7 @@ setInterval(() => {
 
               <div class="meal-card">
                 <span>저녁</span>
-                <strong>런던 펍: 더 블랙프라이어</strong>
+                <strong>런던 펍: 더 블랙프라이어스</strong>
                 <small>호텔 바로 앞에 있는 유명한 펍에서 가볍게 저녁 먹기</small>
                 <a class="meal-button" href="https://maps.app.goo.gl/92oecmyfcBfgFGUz8" target="_blank">지도 보기</a>
               </div>
